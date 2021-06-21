@@ -2,10 +2,10 @@
 <html lang="en">
 <body>
     <form [formGroup]="formModif" (ngSubmit)="onSubmit()">
-        <input type="text" class="smallinput" placeholder="Modifier le nom d'utilisateur" formControlName="nusername">
-        <input type="text" class="smallinput" placeholder="Ancien mot de passe" formControlName="oldpassword">
-        <input type="text" class="smallinput" placeholder="Nouveau mot de passe" formControlName="npassword">
-        <input type="text" class="smallinput" placeholder="Vérifiez le nouveau mot de passe" formControlName="npasswordbis">
+        <input type="text" class="smallinput" placeholder="Modifier le nom d'utilisateur" formControlName="nusername"><br>
+        <input type="text" class="smallinput" placeholder="Ancien mot de passe" formControlName="oldpassword"><br>
+        <input type="text" class="smallinput" placeholder="Nouveau mot de passe" formControlName="npassword"><br>
+        <input type="text" class="smallinput" placeholder="Vérifiez le nouveau mot de passe" formControlName="npasswordbis"><br>
         <button type="submit" [disabled]="myForm.invalid" class="button">Valider la modification</button>
 
     </form>

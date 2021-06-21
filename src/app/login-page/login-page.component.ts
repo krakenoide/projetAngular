@@ -9,6 +9,7 @@ import { FormBuilder,FormGroup,NgForm,Validators} from '@angular/forms'
 export class LoginPageComponent implements OnInit {
   myForm!: FormGroup;
   message = "bonjour";
+  isAuth = false;
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -22,8 +23,8 @@ export class LoginPageComponent implements OnInit {
   
   onSubmit(): void {
       console.log('onSubmit');
+      this.isAuth =true;
       console.log(this.myForm.value);
-      
   }
 
 }

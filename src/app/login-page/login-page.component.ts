@@ -7,19 +7,23 @@ import { FormBuilder,FormGroup,NgForm,Validators} from '@angular/forms'
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
-  myFormLoginPage!: FormGroup;
+  myForm!: FormGroup;
+  message = "bonjour";
 
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.myFormLoginPage = this.formBuilder.group({
+    console.log("Hello");
+    this.myForm = this.formBuilder.group({
       username: ['',[Validators.required,Validators.minLength(3),Validators.maxLength(50)]],
       password: ['',[Validators.required,Validators.minLength(3),Validators.maxLength(50)]]
     });
   } 
   
-  ngOnSummit(): void {
-      console.log(this.myFormLoginPage.value);
+  onSubmit(): void {
+      console.log('Hello World !');
+      console.log(this.myForm.value);
+      
   }
 
 }

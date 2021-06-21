@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
-import { ormBuilder, FormGroup, NgForm, Validators, FormBuilder } from '@angular/forms';
-import { userInfo } from 'os';
+import { FormGroup, NgForm, Validators, FormBuilder } from '@angular/forms';
+import { serviceConnected } from '../serviceConnected';
 
 @Component({
   selector: 'app-page-modif',
@@ -13,20 +13,21 @@ export class PageModifComponent implements OnInit {
 
   myForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private connected:serviceConnected) { }
 
   ngOnInit(): void {
     this.myForm=this.formBuilder.group({
-      nusername:["",[Validators.required, Validators.maxLength(50)]],
+      nusername:["",[Validators.required,Validators.maxLength(50)]],
       oldpassword:["",[Validators.required]],
       npassword:["",[Validators.required]],
       npasswordbis:["",[Validators.required]]
          
     })
+    
   }
 
   onSubmit(): void {
-    
+
   }
 
 }

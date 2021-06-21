@@ -13,7 +13,7 @@ export class LoginPageComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    console.log("Hello");
+    console.log("ngOnInit");
     this.myForm = this.formBuilder.group({
       username: ['',[Validators.required,Validators.minLength(3),Validators.maxLength(50)]],
       password: ['',[Validators.required,Validators.minLength(3),Validators.maxLength(50)]]
@@ -21,7 +21,7 @@ export class LoginPageComponent implements OnInit {
   } 
   
   onSubmit(): void {
-      console.log('Hello World !');
+      console.log('onSubmit');
       console.log(this.myForm.value);
       
   }

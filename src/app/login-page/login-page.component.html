@@ -1,0 +1,7 @@
+<p>login-page works!</p>
+
+<form [formGroup]="myFormLoginPage" (ngSubmit)="onSubmit()">
+    <input type = "text" name="username" formControlName="username">
+    <input type = "password" name = "password" formControlName = "password">
+    <button type = "submit" [disabled] = "myFormLoginPage.invalid">Login</button>
+</form>

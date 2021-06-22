@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
-import { HttpClient } from "@angular/common/http"
+import { HttpClient } from "@angular/common/http";
+import { User } from "src/app/modeles/User";
 
 @Injectable()
 export class serviceUser {
@@ -22,7 +23,13 @@ export class serviceUser {
 
     login(username:string,password:string) {
         this.httpClient.post<User> (this.urlLogin, {username:username,password:password})
-                       .subscribe(data =>{this.connectedUser=data; this.emitConnectedUser();},error => {});
+                       .subscribe(data =>{this.connectedUser=data; this.emitConnectedUser();
+                        console.log(data);
+                    },
+                       
+                       error => {
+
+                       });
     }
 
     deleteUser(id:number){

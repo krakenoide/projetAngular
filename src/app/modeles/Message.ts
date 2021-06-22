@@ -1,4 +1,5 @@
 import { Timestamp } from "rxjs";
+import { Topic } from "./Topic";
 
 export class Message {
     id:number;

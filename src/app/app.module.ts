@@ -8,17 +8,29 @@ import { AppComponent } from './app.component';
 import { PageModifComponent } from './page-modif/page-modif.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
+<<<<<<< HEAD
+=======
+import { LoginPageComponent } from './login-page/login-page.component';
+import { HttpClientModule } from'@angular/common/http';
+
+>>>>>>> aa223ba29d61215d35f359b6968499c2cb03d847
 
 @NgModule({
   declarations: [
     AppComponent,
-    PageModifComponent
+    PageModifComponent,
+    LoginPageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+<<<<<<< HEAD
     ReactiveFormsModule
+=======
+    ReactiveFormsModule,
+    HttpClientModule
+>>>>>>> aa223ba29d61215d35f359b6968499c2cb03d847
   ],
   providers: [serviceUser,
               serviceMessage,

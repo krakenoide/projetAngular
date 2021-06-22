@@ -1,4 +1,7 @@
-class User {
+import { Topic } from "./Topic";
+import { Message } from "./Message";
+
+export class User {
     id:number;
     username:string;
     admin:number;

@@ -5,35 +5,18 @@ import { serviceUser } from '../../Services/serviceUser';
 
 @Component({
   selector: 'app-header',
-  templateUrl: './header.component.html'//,
-  //styleUrls: ['../../../styles.css']
+  templateUrl: './header.component.html'
 })
 
 export class HeaderComponent implements OnInit {
-  connectedUser: User;
+  
 
-  myForm!: FormGroup;
+  constructor(private services:serviceUser, ) { 
 
-  constructor(private formBuilder: FormBuilder, private services:serviceUser, user:User) { 
-    this.connectedUser=user;
   }
 
   ngOnInit(): void {
-    this.myForm=this.formBuilder.group({
-      nusername:["",[Validators.required,Validators.maxLength(50)]],
-      oldpassword:["",[Validators.required]],
-      npassword:["",[Validators.required]],
-      npasswordbis:["",[Validators.required]]
-         
-    });
     
   }
 
-  onSubmit(): void {
-
-  }
-
-  getErrors():string|void {
-
-  }
 }

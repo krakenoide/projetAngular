@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-class Topic {
-=======
 export class Topic {
->>>>>>> develop
     id:number;
     title:string;
     date:Date;

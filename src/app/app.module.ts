@@ -6,10 +6,10 @@ import { serviceTopic } from './Services/serviceTopic'
 import { serviceMessage } from './Services/serviceMessage'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PageModifComponent } from './page-modif/page-modif.component';
+import { PageModifComponent } from './components/page-modif/page-modif.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
-import { LoginPageComponent } from './login-page/login-page.component';
+import { LoginPageComponent } from './components/login-page/login-page.component';
 import { HttpClientModule } from'@angular/common/http';
 import { HomePageComponent } from './components/home-page/homepage.component';
 import { CreationPageComponent } from './components/creation-page/creationpage.component';

@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { CreationPageComponent } from './components/creation-page/creationpage.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomePageComponent } from './components/home-page/homepage.component';
-import { LoginPageComponent } from './login-page/login-page.component';
-import { PageModifComponent } from './page-modif/page-modif.component';
+import { LoginPageComponent } from './components/login-page/login-page.component';
+import { PageModifComponent } from './components/page-modif/page-modif.component';
 
 const routes: Routes = [
   {path: 'login',component: LoginPageComponent},

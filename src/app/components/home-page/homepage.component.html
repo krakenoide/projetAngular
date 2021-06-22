@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<body>
     <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
         <input class="inputsmall" type="text" placeholder="Titre" minlength="5" maxlength="100">
         <input class="inputlarge" type="text" placeholder="Message" minlength="5" maxlength="3000">
@@ -8,11 +5,8 @@
     </form>
     <input class="filtre" type="text" placeholder="Filtre par titre ou par auteur">
 
-    <div *ngFor="let topic of topiclist">
+    <!-- <div *ngFor="let topic of topiclist">
         <h2 class="topicline topic">${topic.title}</h2>
         <button class="topicline btnmodif">Modifier</button>
         <button class="topicline btnsupp">Supprimer</button>
-    </div>
-
-</body>
-</html>
+    </div> -->

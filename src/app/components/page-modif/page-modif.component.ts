@@ -1,35 +1,38 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, NgForm, Validators, FormBuilder } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { serviceUser } from '../../Services/serviceUser';
+import { User } from 'src/app/modeles/User';
 
 @Component({
   selector: 'app-page-modif',
   templateUrl: './page-modif.component.html',
-  styleUrls: ['../../style.css']
+  styleUrls: ['../../../styles.css']
 })
 
 export class PageModifComponent implements OnInit {
-  connectedUser: User;
+  user!: User;
+  userSubscription!: Subscription
 
-  myForm!: FormGroup;
+  formModif!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private services:serviceUser, user:User) { 
-    this.connectedUser=user;
+  constructor(private formBuilder: FormBuilder, private services:serviceUser) { 
+    this.userSubscription = this.services.userSubject.subscribe((connectedUser:User) => {this.user=connectedUser;
+    })
+    this.services.emitConnectedUser();
   }
 
   ngOnInit(): void {
-    this.myForm=this.formBuilder.group({
+    this.formModif=this.formBuilder.group({
       nusername:["",[Validators.required,Validators.maxLength(50)]],
       oldpassword:["",[Validators.required]],
       npassword:["",[Validators.required]],
       npasswordbis:["",[Validators.required]]
-         
-    });
-    
+    })
   }
 
   onSubmit(): void {
-
+      this.services.modifUser(this.formModif.value.nusername,this.formModif.value.oldpassword,this.formModif.value.npassword,this.formModif.value.npasswordbis);
   }
 
   getErrors():string|void {

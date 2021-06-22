@@ -4,7 +4,7 @@ import { FormGroup, NgForm, Validators, FormBuilder } from '@angular/forms';
 @Component({
   selector: 'app-creation-page',
   templateUrl: './creationpage.component.html',
-  styleUrls: ['../../style.css']
+  styleUrls: ['../../../styles.css']
 })
 
 export class CreationPageComponent implements OnInit {

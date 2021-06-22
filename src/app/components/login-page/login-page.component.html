@@ -11,6 +11,9 @@
     <button type="submit" [disabled]="!loginForm.valid">Submit</button>
   </form>
 
+
+  <p  *ngIf="loginForm.dirty && loginForm.controls.username.invalid"> {{getUsernameErrors()}} </p>
+
 <hr>
 
   <a href=''> Retour vers la page principale </a>

@@ -2,12 +2,14 @@
    
     <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
         <input class="inputsmall" type="text" placeholder="Nom d'utilisateur" formControlName="username">
-        <input class="inputsmall" type="password" placeholder="Mot de passe">
-        <input class="inputsmall" type="password" placeholder="Confirmer le mot de passe">
+        <input class="inputsmall" type="password" placeholder="Mot de passe" formControlName="password">
+        <input class="inputsmall" type="password" placeholder="Confirmer le mot de passe" formControlName="passwordConfirm">
         <input id="remember" class="rememberme" type="checkbox">
         <label for="remember" style="color: #1569CA;">Se souvenir de moi</label>
-        <input class="button" type="submit" value="Créer un compte">
+        <button type="submit" class="button" >Créer un Compte</button>
     </form>
+
+    <!-- <p  *ngIf="myForm.dirty && myForm.controls.username.invalid"> {{getUsernameErrors()}} </p> -->
 
     <hr>
 

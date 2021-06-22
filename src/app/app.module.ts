@@ -5,11 +5,11 @@ import {serviceTopic} from './Services/serviceTopic'
 import {serviceMessage} from './Services/serviceMessage'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-<<<<<<< HEAD
-=======
-import { PageModifComponent } from './page-modif/page-modif.component';
->>>>>>> 9f3bcb2b2d33e8b5ba7d28a2da3c8c7cbc16ff57
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CreationPageComponent } from './components/creation-page/creationpage.component';
+import { HeaderComponent } from './components/header/header.component';
+import { HomePageComponent } from './components/home-page/homepage.component';
+import { PageModifComponent } from './components/page-modif/page-modif.component';
 
 @NgModule({
   declarations: [

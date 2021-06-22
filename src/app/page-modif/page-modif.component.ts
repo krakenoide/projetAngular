@@ -5,7 +5,7 @@ import { serviceUser } from '../Services/serviceUser';
 @Component({
   selector: 'app-page-modif',
   templateUrl: './page-modif.component.html',
-  styleUrls: ['./page-modif.component.css']
+  styleUrls: ['./style.css']
 })
 
 export class PageModifComponent implements OnInit {

@@ -5,35 +5,17 @@ import { serviceUser } from '../../Services/serviceUser';
 
 @Component({
   selector: 'app-home-page',
-  templateUrl: './homepage.component.html',
-  styleUrls: ['../../../styles.css']
+  templateUrl: './homepage.component.html'//,
+  //styleUrls: ['../../../styles.css']
 })
 
 export class HomePageComponent implements OnInit {
-  connectedUser: User;
+  connectedUser!: User;
 
-  myForm!: FormGroup;
-
-  constructor(private formBuilder: FormBuilder, private services:serviceUser, user:User) { 
-    this.connectedUser=user;
+  constructor(private services:serviceUser) { 
   }
 
-  ngOnInit(): void {
-    this.myForm=this.formBuilder.group({
-      nusername:["",[Validators.required,Validators.maxLength(50)]],
-      oldpassword:["",[Validators.required]],
-      npassword:["",[Validators.required]],
-      npasswordbis:["",[Validators.required]]
-         
-    });
-    
+  ngOnInit(): void {     
   }
-
-  onSubmit(): void {
-
-  }
-
-  getErrors():string|void {
-
-  }
+  
 }

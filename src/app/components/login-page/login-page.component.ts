@@ -4,8 +4,8 @@ import { serviceUser } from '../../Services/serviceUser';
 
 @Component({
   selector: 'app-login-page',
-  templateUrl: './login-page.component.html',
-  styleUrls: ['../../../styles.css']
+  templateUrl: './login-page.component.html'//,
+  //styleUrls: ['../../../styles.css']
 
 })
 

@@ -10,13 +10,15 @@ import { serviceUser } from '../Services/serviceUser';
 })
 
 export class PageModifComponent implements OnInit {
-  connectedUser: User;
+  user!: User;
   userSubscription!: Subscription
 
   myForm!: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private services:serviceUser) { 
-    this.connectedUser=new User(0,"","",false);
+    this.userSubscription = this.services.userSubject.subscribe((connectedUser:User) => {this.user=connectedUser;
+    })
+    this.services.emitConnectedUser();
   }
 
   ngOnInit(): void {
@@ -31,7 +33,7 @@ export class PageModifComponent implements OnInit {
   }
 
   onSubmit(): void {
-
+      this.services.modifUser(this.myForm.value.nusername,this.myForm.value.oldpassword,this.myForm.value.npassword,this.myForm.value.npasswordbis);
   }
 
   getErrors():string|void {

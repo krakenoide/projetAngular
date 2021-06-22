@@ -1,11 +1,19 @@
 
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
-    <input class="inputsmall" id="username" type="text" formControlName="username" placeholder="Nom d'utilisateur">
-    <input class="inputsmall" id="password" type="password" formControlName="password" placeholder="Mot de passe">
+    <input id="username" class="inputsmall" type="text" placeholder="Nom d'utilisateur" formControlName="username">
+
+    <input id="password" class="inputsmall" type="password" placeholder="Mot de passe" formControlName="password">
+   
     <input id="remember" class="rememberme" type="checkbox">
     <label for="remember" style="color: #1569CA;">Se souvenir de moi</label>
-    <button class="button" type="submit" [disabled]="!loginForm.valid">Se connecter</button>
+
+    <button type="submit" [disabled]="!loginForm.valid">Submit</button>
   </form>
+
+
+  <p  *ngIf="loginForm.dirty && loginForm.controls.username.invalid"> {{getUsernameErrors()}} </p>
+
+<hr>
 
   <a href=''> Retour vers la page principale </a>

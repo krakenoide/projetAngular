@@ -5,14 +5,13 @@ export class User {
     id:number;
     username:string;
     admin:number;
-    topics:Topic[]= [];
+    topics: Topic[]= [];
     messages: Message[]= [];
 
     constructor (id:number,username:string,password:string,admin:number) {
         this.id=id;
         this.username=username;
         this.admin=admin;
-
     }
 
 }

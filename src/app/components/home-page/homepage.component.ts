@@ -1,7 +1,6 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, NgForm, Validators, FormBuilder } from '@angular/forms';
 import { User } from 'src/app/modeles/User';
-import { Subscription } from 'rxjs';
 import { serviceUser } from '../../Services/serviceUser';
 
 @Component({
@@ -10,14 +9,9 @@ import { serviceUser } from '../../Services/serviceUser';
 })
 
 export class HomePageComponent implements OnInit {
-  user!: User;
-  userSubscription!: Subscription;
+  connectedUser!: User;
 
-
-  constructor( private services:serviceUser) { 
-    this.userSubscription = this.services.userSubject.subscribe((connectedUser:User) => {this.user=connectedUser;
-    })
-    this.services.emitConnectedUser();
+  constructor(private services:serviceUser) { 
   }
 
   ngOnInit(): void {     

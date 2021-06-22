@@ -8,7 +8,7 @@ import { PageModifComponent } from './page-modif/page-modif.component';
 
 const routes: Routes = [
   {path: 'login',component: LoginPageComponent},
-  {path:'modif',component:PageModifComponent}
+  {path:'modif',component:PageModifComponent},
   {path: '', component:HomePageComponent},
   {path: 'creationpage', component:CreationPageComponent},
   {path: 'header', component:HeaderComponent}

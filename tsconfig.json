@@ -3,10 +3,6 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
-<<<<<<< HEAD
-=======
-    // "baseUrl": "src",
->>>>>>> develop
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,

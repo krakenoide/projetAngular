@@ -6,11 +6,11 @@ export class serviceUser {
     user: User= new User(0,"","",false);
     userSubject = new Subject<string>();
 
-    setUser(cuser:User):void {
+    setConnectedUser(cuser:User):void {
         this.user=cuser;
     }
 
-    getUser():User{
+    getConnectedUser():User{
         return this.user;
     }
 }

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 
 const routes: Routes = [
@@ -8,10 +7,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations:[AppComponent],
   imports: [RouterModule.forRoot(routes)],
-  providers:[],
-  exports: [RouterModule],
-  bootstrap:[AppComponent]
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }

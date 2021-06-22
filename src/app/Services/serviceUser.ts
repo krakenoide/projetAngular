@@ -1,11 +1,12 @@
 import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
-import { HttpClient } from "@angular/common/http"
+import { HttpClient } from "@angular/common/http";
+import { User } from "src/app/modeles/User";
 
 @Injectable()
 export class serviceUser {
-    connectedUser: User= new User(0,"","",false);
-    users: User[]=[];
+    connectedUser!: User;
+    users!: User[];
     apiUser = "http://localhost:8080/api/user"
     apiLogin = "http://localhost:8080/api/login"
     userSubject = new Subject<string>();

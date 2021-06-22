@@ -15,11 +15,11 @@
 
     <label for="username">Username: </label>
     <input id="username" type="text" formControlName="username">
-    <p *ngIf="loginForm.dirty" && loginForm.controls.username.invalid>Message d'erreur: {{ getUsernameErrors()}}</p>
+    <!-- <p *ngIf="loginForm.dirty" && loginForm.controls.username.invalid>Message d'erreur: {{ getUsernameErrors()}}</p> -->
 
     <label for="password">Password: </label>
     <input id="password" type="password" formControlName="password">
-    <p *ngIf="loginForm.dirty" && loginForm.controls.password.invalid>Message d'erreur: {{ getPasswordErrors()}}</p>
+    <!-- <p *ngIf="loginForm.dirty" && loginForm.controls.password.invalid>Message d'erreur: {{ getPasswordErrors()}}</p> -->
 
     <button type="submit" [disabled]="!loginForm.valid">Submit</button>
   </form>

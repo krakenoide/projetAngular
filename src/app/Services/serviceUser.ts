@@ -7,7 +7,7 @@ export class serviceUser {
     connectedUser!: User;
     users!: User[];
     apiUser = "http://localhost:8080/api/user"
-    apiLogin = "http://localhost:8080/api/login"
+    urlLogin = "http://localhost:8080/login"
     userSubject = new Subject<User>();
 
     constructor(private httpClient:HttpClient){}
@@ -21,7 +21,7 @@ export class serviceUser {
     }
 
     login(username:string,password:string) {
-        this.httpClient.post<User> (this.apiLogin, {username:username,password:password})
+        this.httpClient.post<User> (this.urlLogin, {username:username,password:password})
                        .subscribe(data =>{this.connectedUser=data; this.emitConnectedUser();},error => {});
     }
 

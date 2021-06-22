@@ -1,6 +1,6 @@
 import { Timestamp } from "rxjs";
 
-class Message {
+export class Message {
     id:number;
     author_id:number;
     content:string;

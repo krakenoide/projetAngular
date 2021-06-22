@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {serviceUser} from './Services/serviceUser'
-import {serviceTopic} from './Services/serviceTopic'
-import {serviceMessage} from './Services/serviceMessage'
+import { serviceUser } from './Services/serviceUser'
+import { serviceTopic } from './Services/serviceTopic'
+import { serviceMessage } from './Services/serviceMessage'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PageModifComponent } from './page-modif/page-modif.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   providers: [serviceUser,
               serviceMessage,

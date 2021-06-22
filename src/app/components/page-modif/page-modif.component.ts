@@ -6,8 +6,7 @@ import { User } from 'src/app/modeles/User';
 
 @Component({
   selector: 'app-page-modif',
-  templateUrl: './page-modif.component.html'//,
-  //styleUrls: ['../../../styles.css']
+  templateUrl: './page-modif.component.html'
 })
 
 export class PageModifComponent implements OnInit {

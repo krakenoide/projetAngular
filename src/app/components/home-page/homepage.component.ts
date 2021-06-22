@@ -5,8 +5,7 @@ import { serviceUser } from '../../Services/serviceUser';
 
 @Component({
   selector: 'app-home-page',
-  templateUrl: './homepage.component.html'//,
-  //styleUrls: ['../../../styles.css']
+  templateUrl: './homepage.component.html'
 })
 
 export class HomePageComponent implements OnInit {

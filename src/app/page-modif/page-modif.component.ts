@@ -29,7 +29,6 @@ export class PageModifComponent implements OnInit {
       npasswordbis:["",[Validators.required]]
          
     })
-    
   }
 
   onSubmit(): void {

@@ -1,19 +1,11 @@
 
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
-    <label for="username">Username: </label>
-    <input id="username" type="text" formControlName="username">
-
-    <br><br>
-
-    <label for="password">Password: </label>
-    <input id="password" type="password" formControlName="password">
-   
-    <br><br>
-
-    <button type="submit" [disabled]="!loginForm.valid">Submit</button>
+    <input class="inputsmall" id="username" type="text" formControlName="username" placeholder="Nom d'utilisateur">
+    <input class="inputsmall" id="password" type="password" formControlName="password" placeholder="Mot de passe">
+    <input id="remember" class="rememberme" type="checkbox">
+    <label for="remember" style="color: #1569CA;">Se souvenir de moi</label>
+    <button class="button" type="submit" [disabled]="!loginForm.valid">Se connecter</button>
   </form>
-
-<hr>
 
   <a href=''> Retour vers la page principale </a>

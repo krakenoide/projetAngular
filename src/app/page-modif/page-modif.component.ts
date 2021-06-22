@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, NgForm, Validators, FormBuilder } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { serviceUser } from '../Services/serviceUser';
 
 @Component({
@@ -10,6 +11,7 @@ import { serviceUser } from '../Services/serviceUser';
 
 export class PageModifComponent implements OnInit {
   connectedUser: User;
+  userSubscription!: Subscription
 
   myForm!: FormGroup;
 

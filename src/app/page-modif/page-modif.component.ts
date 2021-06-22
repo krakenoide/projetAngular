@@ -6,7 +6,7 @@ import { serviceUser } from '../Services/serviceUser';
 @Component({
   selector: 'app-page-modif',
   templateUrl: './page-modif.component.html',
-  styleUrls: ['./page-modif.component.css']
+  styleUrls: ['../../style.css']
 })
 
 export class PageModifComponent implements OnInit {
@@ -15,8 +15,8 @@ export class PageModifComponent implements OnInit {
 
   myForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private services:serviceUser, user:User) { 
-    this.connectedUser=user;
+  constructor(private formBuilder: FormBuilder, private services:serviceUser) { 
+    this.connectedUser=new User(0,"","",false);
   }
 
   ngOnInit(): void {

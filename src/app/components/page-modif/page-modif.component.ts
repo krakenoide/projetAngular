@@ -1,11 +1,11 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, NgForm, Validators, FormBuilder } from '@angular/forms';
-import { serviceUser } from '../Services/serviceUser';
+import { serviceUser } from '../../Services/serviceUser';
 
 @Component({
   selector: 'app-page-modif',
   templateUrl: './page-modif.component.html',
-  styleUrls: ['./style.css']
+  styleUrls: ['../../style.css']
 })
 
 export class PageModifComponent implements OnInit {

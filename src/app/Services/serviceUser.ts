@@ -24,6 +24,7 @@ export class serviceUser {
     login(username:string,password:string) {
         this.httpClient.post<User> (this.urlLogin, {username:username,password:password})
                        .subscribe(data =>{this.connectedUser=data; this.emitConnectedUser();
+                        window.location.href="";
                         console.log(data);
                     },
                        
@@ -34,21 +35,25 @@ export class serviceUser {
 
     deleteUser(id:number){
         this.httpClient.delete(this.apiUser+`/${id}`)
-                       .subscribe(data =>{},error => {});
+                       .subscribe(data =>{},
+                        error => {});
     }
 
     getAllUsers() {
         this.httpClient.get<User[]> (this.apiUser)
-                       .subscribe(data =>{this.users=data},error => {});
+                       .subscribe(data =>{this.users=data},
+                        error => {});
     }
 
     createUser(username:string,password:string,passwordbis:string){
         this.httpClient.post<User> (this.apiUser, {username:username,password:password,passwordbis:passwordbis})
-                       .subscribe(data =>{this.connectedUser=data; this.emitConnectedUser();},error => {});
+                       .subscribe(data =>{this.connectedUser=data; this.emitConnectedUser(); window.location.href="";},
+                       error => {});
     }
 
     modifUser(nusername:string,oldpassword:string,npassword:string,npasswordbis:string){
         this.httpClient.post<User> (this.apiUser+`/${this.connectedUser.id}`, {username:nusername,oldpassword:oldpassword,password:npassword,passwordbis:npasswordbis})
-                       .subscribe(data =>{this.connectedUser=data; this.emitConnectedUser();},error => {});
+                       .subscribe(data =>{this.connectedUser=data; this.emitConnectedUser(); window.location.href="";},
+                       error => {});
     }
 }

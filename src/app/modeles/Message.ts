@@ -1,6 +1,12 @@
 import { Timestamp } from "rxjs";
+<<<<<<< HEAD
 
 class Message {
+=======
+import { Topic } from "./Topic";
+
+export class Message {
+>>>>>>> develop
     id:number;
     author_id:number;
     content:string;

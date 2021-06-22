@@ -1,3 +1,5 @@
+    
+   
     <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
         <input class="inputsmall" type="text" placeholder="Nom d'utilisateur" formControlName="username">
         <input class="inputsmall" type="password" placeholder="Mot de passe">
@@ -7,5 +9,8 @@
         <input class="button" type="submit" value="Créer un compte">
     </form>
 
+    <hr>
+
+    <a href=''> Retour vers la page principale </a>
 
     <!-- <p *ngIf="myForm.dirty && myForm.controls.username.invalid">Message d'erreur : {{getUsernameErrors() }}</p> -->

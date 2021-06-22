@@ -24,7 +24,7 @@ export class PageModifComponent implements OnInit {
       npassword:["",[Validators.required]],
       npasswordbis:["",[Validators.required]]
          
-    })
+    });
     
   }
 

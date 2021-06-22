@@ -9,7 +9,7 @@ export class serviceUser {
     users!: User[];
     apiUser = "http://localhost:8080/api/user"
     apiLogin = "http://localhost:8080/api/login"
-    userSubject = new Subject<string>();
+    userSubject = new Subject<User>();
 
     constructor(private httpClient:HttpClient){}
 
@@ -17,14 +17,13 @@ export class serviceUser {
         this.connectedUser=cuser;
     }
 
-    emitConnectedUser():User{
-        return this.connectedUser;
+    emitConnectedUser():void{
+        this.userSubject.next(this.connectedUser);
     }
 
-    login(username:string,password:string):User {
+    login(username:string,password:string) {
         this.httpClient.post<User> (this.apiLogin, {username:username,password:password})
-                       .subscribe(data =>{this.connectedUser=data},error => {});
-        return this.connectedUser;
+                       .subscribe(data =>{this.connectedUser=data; this.emitConnectedUser();},error => {});
     }
 
     deleteUser(id:number){
@@ -39,11 +38,11 @@ export class serviceUser {
 
     createUser(username:string,password:string,passwordbis:string){
         this.httpClient.post<User> (this.apiUser, {username:username,password:password,passwordbis:passwordbis})
-                       .subscribe(data =>{this.connectedUser=data},error => {});
+                       .subscribe(data =>{this.connectedUser=data; this.emitConnectedUser();},error => {});
     }
 
     modifUser(nusername:string,oldpassword:string,npassword:string,npasswordbis:string){
         this.httpClient.post<User> (this.apiUser+`/${this.connectedUser.id}`, {username:nusername,oldpassword:oldpassword,password:npassword,passwordbis:npasswordbis})
-                       .subscribe(data =>{this.connectedUser=data},error => {});
+                       .subscribe(data =>{this.connectedUser=data; this.emitConnectedUser();},error => {});
     }
 }

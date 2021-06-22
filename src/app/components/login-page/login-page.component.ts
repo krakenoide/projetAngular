@@ -5,6 +5,10 @@ import { serviceUser } from '../../Services/serviceUser';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html'
+<<<<<<< HEAD
+=======
+
+>>>>>>> fddf2ed4dfcde50609722de54df455658152605c
 })
 
 export class LoginPageComponent implements OnInit{

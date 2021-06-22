@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>HomePage</title>
+</head>
+<body>
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+        <input class="inputsmall" type="text" placeholder="Titre" minlength="5" maxlength="100">
+        <input class="inputlarge" type="text" placeholder="Message" minlength="5" maxlength="3000">
+        <input class="button" type="submit" value="Ajouter un nouveau sujet">
+    </form>
+    <input class="filtre" type="text" placeholder="Filtre par titre ou par auteur">
+
+    <div *ngFor="let topic of topiclist">
+        <h2 class="topicline topic">${topic.title}</h2>
+        <button class="topicline btnmodif">Modifier</button>
+        <button class="topicline btnsupp">Supprimer</button>
+    </div>
+
+</body>
+</html>

@@ -2,7 +2,7 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, NgForm, Validators, FormBuilder } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { serviceUser } from '../Services/serviceUser';
-import { User } from  'src/app/modeles/User';
+import { User } from 'src/app/modeles/User';
 
 @Component({
   selector: 'app-page-modif',

@@ -9,7 +9,7 @@ import { PageModifComponent } from './page-modif/page-modif.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginPageComponent } from './login-page/login-page.component';
-
+import { HttpClientModule } from'@angular/common/http';
 
 
 @NgModule({
@@ -22,7 +22,8 @@ import { LoginPageComponent } from './login-page/login-page.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [serviceUser,
               serviceMessage,

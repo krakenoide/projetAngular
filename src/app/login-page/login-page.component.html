@@ -12,11 +12,17 @@
     <label for="username">Username: </label>
     <input id="username" type="text" formControlName="username">
     <!-- <p *ngIf="loginForm.dirty" && loginForm.controls.username.invalid>Message d'erreur: {{ getUsernameErrors()}}</p> -->
+<br><br>
 
     <label for="password">Password: </label>
     <input id="password" type="password" formControlName="password">
     <!-- <p *ngIf="loginForm.dirty" && loginForm.controls.password.invalid>Message d'erreur: {{ getPasswordErrors()}}</p> -->
 
+    <br><br>
+
     <button type="submit" [disabled]="!loginForm.valid">Submit</button>
   </form>
 
+<hr>
+
+  <a href='modif'> Lien vers Page de modification</a>

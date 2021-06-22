@@ -1,0 +1,34 @@
+
+
+    <h1 class = "topicline topic">titre du topic
+       
+    </h1> 
+    <h6 class = "topicline topic">date de creation et identitenfiant de l'user</h6>
+    <form (ngSubmit)="refresh()" [formGroup]= "myrefreshbutton">
+        <input type = "submit" id ="actualisation" value="actualiser">      
+    </form>
+    <div class = "inputlarge">
+        auteur et date du message
+        <div>
+            contenu du message 1
+
+
+        </div>
+    </div>
+    <div class = "inputlarge">
+        auteur et date du message
+        <div>
+            contenu du message 2
+
+
+        </div>
+    </div>
+    <form (ngSubmit)="onSubmit()" [formGroup]= "myform"> 
+        <input type ="text">
+        
+        </input>
+        
+        <input type="submit" name ="content" formControlName ="content">
+            
+    </input>
+    </form>

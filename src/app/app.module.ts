@@ -7,20 +7,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PageModifComponent } from './page-modif/page-modif.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { LoginPageComponent } from './login-page/login-page.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    PageModifComponent
+    PageModifComponent,
+    LoginPageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FormsModule,
     ReactiveFormsModule
   ],
   providers: [serviceUser,

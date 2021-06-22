@@ -6,9 +6,9 @@
         <input type="password" class="smallinput" placeholder="Ancien mot de passe" formControlName="oldpassword"><br>
         <input type="password" class="smallinput" placeholder="Nouveau mot de passe" formControlName="npassword"><br>
         <input type="password" class="smallinput" placeholder="Vérifiez le nouveau mot de passe" formControlName="npasswordbis"><br>
-        <button type="submit" [disabled]="myForm.invalid" class="button">Valider la modification</button>
+        <button type="submit" [disabled]="formModif.invalid" class="button">Valider la modification</button>
     </form>
 
-    <!-- <p *ngIf="myForm.dirty" && myForm.controls.nusername.invalid>Message d'erreur: {{getErrors(username)}}</p> -->
+    <!-- <p *ngIf="formModif.dirty" && formModif.controls.nusername.invalid>Message d'erreur: {{getErrors(username)}}</p> -->
 </body>
 </html>

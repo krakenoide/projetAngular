@@ -7,7 +7,7 @@ import { User } from  'src/app/modeles/User';
 @Component({
   selector: 'app-page-modif',
   templateUrl: './page-modif.component.html',
-  styleUrls: ['../../style.css']
+  styleUrls: ['./page-modif.component.css']
 })
 
 export class PageModifComponent implements OnInit {
@@ -25,9 +25,7 @@ export class PageModifComponent implements OnInit {
       oldpassword:["",[Validators.required]],
       npassword:["",[Validators.required]],
       npasswordbis:["",[Validators.required]]
-         
     })
-    
   }
 
   onSubmit(): void {

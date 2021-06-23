@@ -14,7 +14,7 @@ export class HomePageComponent implements OnInit {
   connectedUser!: User;
   myForm!: FormGroup;
   myControl = new FormControl();
-  options: string[] = ['One', 'Two', 'Three'];
+  options: string[] = ['Topic1', 'Topic2', 'Topic3'];
   filteredOptions!: Observable<string[]>;
 
   constructor(private formBuilder: FormBuilder,private services:serviceUser) { 

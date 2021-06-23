@@ -11,7 +11,8 @@ import { User } from 'src/app/modeles/User';
 
 export class PageModifComponent implements OnInit {
   user!: User;
-  userSubscription!: Subscription;
+  userSubscription!: Subscription
+
   formModif!: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private services:serviceUser) { 
@@ -19,7 +20,6 @@ export class PageModifComponent implements OnInit {
     })
     this.services.emitConnectedUser();
   }
-
   ngOnInit(): void {
     this.formModif=this.formBuilder.group({
       nusername:["",[Validators.required,Validators.maxLength(50)]],

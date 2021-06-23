@@ -7,6 +7,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { User } from "../modeles/User";
 import { Message } from "../modeles/Message";
 import { Subscription } from 'rxjs';
+import { serviceUser } from '../Services/serviceUser';
 
 
 @Injectable()
@@ -18,7 +19,7 @@ export class serviceTopic {
     userSubject = new Subject<Topic>();
     userSubscription!: Subscription;
 
-    constructor(private httpClient:HttpClient,private router:Router, private snackBar:MatSnackBar){}
+    constructor(private httpClient:HttpClient,private router:Router, private snackBar:MatSnackBar,private services:serviceUser){}
 
     emitActiveTopic():void{
         this.userSubject.next(this.activeTopic);

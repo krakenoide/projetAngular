@@ -15,7 +15,7 @@ export class serviceUser {
     urlLogin = "http://localhost:8080/login"
     userSubject = new Subject<User>();
 
-    constructor(private httpClient:HttpClient,private router:Router, private snackBar:MatSnackBar,private services:serviceUser){}
+    constructor(private httpClient:HttpClient,private router:Router, private snackBar:MatSnackBar){}
 
     setConnectedUser(cuser:User):void {
         this.connectedUser=cuser;

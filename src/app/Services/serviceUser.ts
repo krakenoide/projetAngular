@@ -84,7 +84,14 @@ export class serviceUser {
     }
 
     modifUser(nusername:string,oldpassword:string,npassword:string,npasswordbis:string){
-        this.httpClient.post<User> (this.apiUser+`/${this.connectedUser.id}`, {username:nusername,oldpassword:oldpassword,password:npassword,passwordbis:npasswordbis})
+        if(nusername==null){
+            nusername=this.connectedUser.username;
+        }
+        if(npassword==null){
+            npassword=oldpassword;
+            npasswordbis=oldpassword;
+        }
+        this.httpClient.patch<User> (this.apiUser+`/${this.connectedUser.id}`, {username:nusername,oldpassword:oldpassword,password:npassword,passwordbis:npasswordbis})
                        .subscribe(data =>{this.connectedUser=data;
                         this.emitConnectedUser(); 
                         this.snackBar.open("Utilisateur connecté modifié!");

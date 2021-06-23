@@ -1,5 +1,7 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
-import { FormGroup, NgForm, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, NgForm, Validators, FormBuilder, FormControl } from '@angular/forms';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 import { User } from 'src/app/modeles/User';
 import { serviceUser } from '../../Services/serviceUser';
 
@@ -10,11 +12,57 @@ import { serviceUser } from '../../Services/serviceUser';
 
 export class HomePageComponent implements OnInit {
   connectedUser!: User;
+  myForm!: FormGroup;
+  myControl = new FormControl();
+  options: string[] = ['Topic1', 'Topic2', 'Topic3'];
+  filteredOptions!: Observable<string[]>;
 
-  constructor(private services:serviceUser) { 
+  constructor(private formBuilder: FormBuilder,private services:serviceUser) { 
   }
 
-  ngOnInit(): void {     
+  ngOnInit(): void {   
+    this.myForm = this.formBuilder.group({
+      title: ['',[Validators.required,Validators.minLength(5),Validators.maxLength(100)]],
+      message: ['',[Validators.required,Validators.minLength(5),Validators.maxLength(3000)]]
+    });  
+
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value))
+    );
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.options.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
+  }
+
+  onSubmit(): void {
+  }
+
+  getTitleErrors(): string|void{
+    if (this.myForm.controls.title.hasError('required')){
+      return 'Ce champ est requis';
+    }
+    if (this.myForm.controls.title.hasError('minLength')){
+      return "Le titre doit comporter au minimum 5 caractères";
+    }
+    if (this.myForm.controls.username.hasError('maxLength')){
+      return "Le titre doit comporter au maximum 100 caractères";
+    }
+  }
+
+  getMessageErrors(): string|void{
+    if (this.myForm.controls.message.hasError('required')){
+      return 'Ce champ est requis';
+    }
+    if (this.myForm.controls.message.hasError('minLength')){
+      return "Le titre doit comporter au minimum 5 caractères";
+    }
+    if (this.myForm.controls.message.hasError('maxLength')){
+      return "Le titre doit comporter au maximum 3000 caractères";
+    }
   }
   
 }

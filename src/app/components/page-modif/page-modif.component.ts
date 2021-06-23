@@ -11,8 +11,7 @@ import { User } from 'src/app/modeles/User';
 
 export class PageModifComponent implements OnInit {
   user!: User;
-  userSubscription!: Subscription
-
+  userSubscription!: Subscription;
   formModif!: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private services:serviceUser) { 

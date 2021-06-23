@@ -13,7 +13,19 @@ import { HomePageComponent } from './components/home-page/homepage.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { PageModifComponent } from './components/page-modif/page-modif.component';
+<<<<<<< HEAD
 import {MatButtonModule} from '@angular/material/button'; 
+=======
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+
+
+
+
+>>>>>>> 9743b0a0de332029bd88d5befd69292b1e072d74
 
 
 @NgModule({
@@ -31,7 +43,14 @@ import {MatButtonModule} from '@angular/material/button';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
+<<<<<<< HEAD
     MatButtonModule
+=======
+    MatButtonModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatAutocompleteModule
+>>>>>>> 9743b0a0de332029bd88d5befd69292b1e072d74
   ],
   providers: [serviceUser,
               serviceMessage,

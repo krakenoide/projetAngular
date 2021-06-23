@@ -11,8 +11,8 @@
     <input matInput formControlName="password" type="password">
   </mat-form-field>
 
-    <input id="remember" class="rememberme" type="checkbox">
-    <label for="remember" style="color: #1569CA;">Se souvenir de moi</label>
+  <mat-checkbox color="primary" class="example-margin rememberme" style="color: #1569CA;">Se souvenir de moi</mat-checkbox>  
+
     <button class="button" type="submit" [disabled]="!loginForm.valid" mat-raised-button color="primary">Se connecter</button>
   </form>
 

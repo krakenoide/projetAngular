@@ -16,6 +16,8 @@ import { PageModifComponent } from './components/page-modif/page-modif.component
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
 
 
 
@@ -36,7 +38,8 @@ import { MatInputModule } from '@angular/material/input';
     ReactiveFormsModule,
     HttpClientModule,
     MatButtonModule,
-    MatInputModule
+    MatInputModule,
+    MatCheckboxModule
   ],
   providers: [serviceUser,
               serviceMessage,

@@ -16,13 +16,13 @@ export class serviceTopic {
     activeTopic!: Topic;
     topics!: Topic[];
     apiTopic = "http://localhost:8080/api/topic"
-    userSubject = new Subject<Topic>();
-    userSubscription!: Subscription;
+    topicSubject = new Subject<Topic>();
+    topicSubscription!: Subscription;
 
     constructor(private httpClient:HttpClient,private router:Router, private snackBar:MatSnackBar,private services:serviceUser){}
 
     emitActiveTopic():void{
-        this.userSubject.next(this.activeTopic);
+        this.topicSubject.next(this.activeTopic);
     }
 
     deleteTopic(id:number){

@@ -3,6 +3,7 @@ import { FormGroup, NgForm, Validators, FormBuilder } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { serviceUser } from '../../Services/serviceUser';
 import { User } from 'src/app/modeles/User';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-page-modif',
@@ -20,7 +21,6 @@ export class PageModifComponent implements OnInit {
     })
     this.services.emitConnectedUser();
   }
-
   ngOnInit(): void {
     this.formModif=this.formBuilder.group({
       nusername:["",[Validators.required,Validators.maxLength(50)]],

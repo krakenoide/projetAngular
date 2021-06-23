@@ -8,9 +8,8 @@ import { Message} from "src/app/modeles/Message";
 
 @Injectable()
 export class serviceMessage {
-    message :
+    m : Message;
     messages! : Message[];
-    userSubject = new Subject<string>();
     apiMessage = "http://localhost:8080/api/message"
     urlLogin = "http://localhost:8080/topic"
 
@@ -18,7 +17,7 @@ export class serviceMessage {
    
 
 
-    getUser(cuser:string):void {
+    getUser(id : number):void {
         this.user=cuser;
     }
 

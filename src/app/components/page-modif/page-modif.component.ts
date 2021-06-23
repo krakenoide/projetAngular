@@ -3,6 +3,7 @@ import { FormGroup, NgForm, Validators, FormBuilder } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { serviceUser } from '../../Services/serviceUser';
 import { User } from 'src/app/modeles/User';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-page-modif',

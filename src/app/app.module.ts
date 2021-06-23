@@ -15,6 +15,10 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { PageModifComponent } from './components/page-modif/page-modif.component';
 import { TopicpageComponent } from './components/topic-page/topic-page.component';
 
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
+
+
 
 
 @NgModule({
@@ -27,13 +31,15 @@ import { TopicpageComponent } from './components/topic-page/topic-page.component
     PageModifComponent,
     TopicpageComponent
 
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule
   ],
   providers: [serviceUser,
               serviceMessage,

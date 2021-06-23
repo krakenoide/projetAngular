@@ -42,6 +42,16 @@ export class serviceTopic {
                         });
     }
 
+    getUser(id:number):Topic{
+        this.httpClient.get<Topic> (this.apiTopic+`/${id}`)
+                       .subscribe(data =>{return data;
+                    },
+                        error => {
+                            this.snackBar.open("Echec de la récupération d'un utilisateur'!");
+                        });
+        return this.activeTopic;
+    }
+
     createTopic(title:string,date:Date,content:Message){
         this.httpClient.post<Topic> (this.apiTopic, {title:title,user:this.connectedUser,date:date,content:content})
                        .subscribe(data =>{this.activeTopic=data;  

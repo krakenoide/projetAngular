@@ -1,5 +1,7 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
-import { FormGroup, NgForm, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, NgForm, Validators, FormBuilder, FormControl } from '@angular/forms';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 import { User } from 'src/app/modeles/User';
 import { serviceUser } from '../../Services/serviceUser';
 
@@ -11,6 +13,9 @@ import { serviceUser } from '../../Services/serviceUser';
 export class HomePageComponent implements OnInit {
   connectedUser!: User;
   myForm!: FormGroup;
+  myControl = new FormControl();
+  options: string[] = ['One', 'Two', 'Three'];
+  filteredOptions!: Observable<string[]>;
 
   constructor(private formBuilder: FormBuilder,private services:serviceUser) { 
   }
@@ -20,6 +25,17 @@ export class HomePageComponent implements OnInit {
       title: ['',[Validators.required,Validators.minLength(5),Validators.maxLength(100)]],
       message: ['',[Validators.required,Validators.minLength(5),Validators.maxLength(3000)]]
     });  
+
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value))
+    );
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.options.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
   }
 
   onSubmit(): void {

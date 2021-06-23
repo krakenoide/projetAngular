@@ -45,6 +45,9 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['login']);
   }
   clickLogout():void{
+    if (localStorage.getItem("storedUser")) {
+      localStorage.removeItem("storedUser");    
+    }
     this.services.setConnectedUser(new User(0,"","",0));
     this.router.navigate(['']);
   }

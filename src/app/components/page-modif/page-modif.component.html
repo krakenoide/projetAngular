@@ -1,9 +1,9 @@
     
     <form [formGroup]="formModif" (ngSubmit)="onSubmit()">
         
-        <mat-form-field class="example-full-width inputsmall">
+        <mat-form-field class="example-full-width inputsmall" appearance= "fill">
             <mat-label>Modifier le nom d'utilisateur</mat-label>
-            <input matInput formControlName="nusername">
+            <input matInput formControlName="nusername" placeholder={{user.username}}>
           </mat-form-field>
 
           <mat-form-field class="example-full-width inputsmall">

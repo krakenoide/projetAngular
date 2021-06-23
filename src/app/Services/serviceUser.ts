@@ -15,7 +15,7 @@ export class serviceUser {
     urlLogin = "http://localhost:8080/login"
     userSubject = new Subject<User>();
 
-    constructor(private httpClient:HttpClient,private router:Router, private snackBar:MatSnackBar){}
+    constructor(private httpClient:HttpClient,private router:Router, private snackBar:MatSnackBar,private services:serviceUser){}
 
     setConnectedUser(cuser:User):void {
         this.connectedUser=cuser;
@@ -53,6 +53,16 @@ export class serviceUser {
                         error => {
                             this.snackBar.open("Echec de la récupération des utilisateurs!");
                         });
+    }
+
+    getUser(id:number):User{
+        this.httpClient.get<User> (this.apiUser+`/${id}`)
+                       .subscribe(data =>{return data;
+                    },
+                        error => {
+                            this.snackBar.open("Echec de la récupération d'un utilisateur'!");
+                        });
+        return this.connectedUser;
     }
 
     createUser(username:string,password:string,passwordbis:string){

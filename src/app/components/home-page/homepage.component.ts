@@ -16,7 +16,7 @@ export class HomePageComponent implements OnInit {
   myControl = new FormControl();
   options: string[] = ['Topic1', 'Topic2', 'Topic3'];
   filteredOptions!: Observable<string[]>;
-  in:boolean=false;
+  booleanlist:boolean[]=[];
 
   constructor(private formBuilder: FormBuilder,private services:serviceUser) { 
   }
@@ -31,13 +31,14 @@ export class HomePageComponent implements OnInit {
       startWith(''),
       map(value => this._filter(value))
     );
+    this.mousecheck();
   }
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-
-    return this.options.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
+    return this.options.filter(option => option.toLowerCase().indexOf(filterValue) === 0);    
   }
+  
 
   onSubmit(): void {
   }
@@ -65,15 +66,19 @@ export class HomePageComponent implements OnInit {
       return "Le titre doit comporter au maximum 3000 caractères";
     }
   }
+  
+  mouseEnterlist(i:number){
+    this.booleanlist[i]=true; 
+  }
 
+  mouseLeavelist(i:number){
+    this.booleanlist[i]=false; 
+  }
   
-    mouseEnter(){
-      this.in=true;
+   mousecheck(){
+   for (let i=0;i<this.options.length;i++){
+      this.booleanlist.push(false);
    }
-  
-   mouseLeave(){
-     this.in=false;
    }
-  
   
 }

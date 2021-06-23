@@ -20,7 +20,7 @@ export class serviceUser {
     }
 
     setConnectedUser(cuser:User):void {
-        this.connectedUser=cuser;
+        this.connectedUser=cuser;       
     }
 
     emitConnectedUser():void{

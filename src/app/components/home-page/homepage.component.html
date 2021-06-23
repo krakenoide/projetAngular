@@ -1,5 +1,16 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+<mat-form-field class="example-full-width inputsmall">
+    <mat-label>Titre</mat-label>
+    <input matInput formControlName="title">
+  </mat-form-field>
 
+  <mat-form-field class="example-full-width inputlarge">
+    <mat-label>Message</mat-label>
+    <textarea matInput formControlName="message"></textarea>
+  </mat-form-field>
 
+  <button type="submit" class="button" mat-raised-button color="primary">Ajouter un nouveau sujet</button>
+</form>
 
 
 <a href="login">login</a> <br>
@@ -7,4 +18,17 @@
 <a href="creationpage">creationpage</a>
 <a href="topic">topicpage</a>
 
+  <mat-form-field class="example-full-width inputsmall">
+    <mat-label>Filtrer par titre ou par auteur</mat-label>
+    <input type="text"
+           aria-label="Number"
+           matInput
+           [formControl]="myControl"
+           [matAutocomplete]="auto">
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
 

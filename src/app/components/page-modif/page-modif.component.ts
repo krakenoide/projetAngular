@@ -21,7 +21,6 @@ export class PageModifComponent implements OnInit {
     })
     this.services.emitConnectedUser();
   }
-
   ngOnInit(): void {
     this.formModif=this.formBuilder.group({
       nusername:["",[Validators.required,Validators.maxLength(50)]],

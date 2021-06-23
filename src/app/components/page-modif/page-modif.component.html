@@ -1,12 +1,26 @@
     
     <form [formGroup]="formModif" (ngSubmit)="onSubmit()">
-        <input type="text" class="inputsmall" placeholder="Modifier le nom d'utilisateur" formControlName="nusername"><br>
-        <input type="password" class="inputsmall" placeholder="Ancien mot de passe" formControlName="oldpassword"><br>
-        <input type="password" class="inputsmall" placeholder="Nouveau mot de passe" formControlName="npassword"><br>
-        <input type="password" class="inputsmall" placeholder="Vérifiez le nouveau mot de passe" formControlName="npasswordbis"><br>
-        <button type="submit" [disabled]="formModif.invalid" class="button">Valider la modification</button>
+        
+        <mat-form-field class="example-full-width inputsmall">
+            <mat-label>Modifier le nom d'utilisateur</mat-label>
+            <input matInput formControlName="nusername">
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width inputsmall">
+            <mat-label>Entrer le mot de passe actuel</mat-label>
+            <input matInput formControlName="oldpassword" type="password">
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width inputsmall">
+            <mat-label>Modifier le mot de passe</mat-label>
+            <input matInput formControlName="npassword" type="password">
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width inputsmall">
+            <mat-label>Confirmer le nouveau mot de passe</mat-label>
+            <input matInput formControlName="npasswordbis" type="password">
+          </mat-form-field>
+
+        <br><br>
+        <button type="submit" [disabled]="formModif.invalid" class="button" mat-raised-button color="primary">Valider la modification</button>
     </form>
-
-    <hr>
-
-    <a href=''> Retour vers la page principale </a>

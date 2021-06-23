@@ -3,6 +3,7 @@ import { Subject } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { User } from "src/app/modeles/User";
 import { ActivatedRoute, Router } from "@angular/router";
+import { HeaderComponent } from "../components/header/header.component";
 import { MatSnackBar } from "@angular/material/snack-bar";
 
 
@@ -15,10 +16,15 @@ export class serviceUser {
     urlLogin = "http://localhost:8080/login"
     userSubject = new Subject<User>();
 
-    constructor(private httpClient:HttpClient,private router:Router, private snackBar:MatSnackBar){}
-
+    constructor(private httpClient:HttpClient,private router:Router,private snackBar:MatSnackBar){
+        if(this.connectedUser==null){
+            this.connectedUser = new User(0,"","",0);
+        }
+    }
+    
     setConnectedUser(cuser:User):void {
         this.connectedUser=cuser;
+        this.emitConnectedUser();
     }
 
     emitConnectedUser():void{

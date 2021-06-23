@@ -38,20 +38,20 @@ export class serviceUser {
                         if (rememberme) {
                             localStorage.setItem("storedUser",JSON.stringify(this.connectedUser));
                         } else {localStorage.removeItem("storedUser")}
-                        this.snackBar.open("Vous êtes connectés!");
+                        this.snackBar.open("Vous êtes connectés!","Ok",{duration: 4000});
                         this.redirectToHomePage();
                     },
                        error => {
-                            this.snackBar.open("Erreur de la connexion!");
+                            this.snackBar.open("Erreur de la connexion!","Ok",{duration: 4000});
                        });
     }
 
     deleteUser(id:number){
         this.httpClient.delete(this.apiUser+`/${id}`)
-                       .subscribe(data =>{this.snackBar.open("Utilisateur supprimé!");
+                       .subscribe(data =>{this.snackBar.open("Utilisateur supprimé!","Ok",{duration: 4000});
                     },
                         error => {
-                            this.snackBar.open("Echec de la supression!");
+                            this.snackBar.open("Echec de la supression!","Ok",{duration: 4000});
                         });
     }
 
@@ -60,7 +60,7 @@ export class serviceUser {
                        .subscribe(data =>{this.users=data;
                     },
                         error => {
-                            this.snackBar.open("Echec de la récupération des utilisateurs!");
+                            this.snackBar.open("Echec de la récupération des utilisateurs!","Ok",{duration: 4000});
                         });
     }
 
@@ -69,7 +69,7 @@ export class serviceUser {
                        .subscribe(data =>{return data;
                     },
                         error => {
-                            this.snackBar.open("Echec de la récupération d'un utilisateur'!");
+                            this.snackBar.open("Echec de la récupération d'un utilisateur!","Ok",{duration: 4000});
                         });
         return this.connectedUser;
     }
@@ -81,11 +81,11 @@ export class serviceUser {
                         if (rememberme) {
                             localStorage.setItem("storedUser",JSON.stringify(this.connectedUser));
                         } else {localStorage.removeItem("storedUser")}  
-                        this.snackBar.open("Utilisateur créé, vous êtes connectés!"); 
+                        this.snackBar.open("Utilisateur créé, vous êtes connectés!","Ok",{duration: 4000}); 
                         this.redirectToHomePage(); 
                     },
                        error => {
-                            this.snackBar.open("Echec de la création d'utilisateur!");
+                            this.snackBar.open("Echec de la création d'utilisateur!","Ok",{duration: 4000});
                        });
     }
 
@@ -96,11 +96,11 @@ export class serviceUser {
                         if (localStorage.getItem("storedUser")) {
                             localStorage.setItem("storedUser",JSON.stringify(this.connectedUser));    
                         }
-                        this.snackBar.open("Utilisateur connecté modifié!");
+                        this.snackBar.open("Utilisateur connecté modifié!","Ok",{duration: 4000});
                         this.redirectToHomePage();
                     },
                        error => {
-                            this.snackBar.open("Echec de la modification!");
+                            this.snackBar.open("Echec de la modification!","Ok",{duration: 4000});
                        });
     }
 

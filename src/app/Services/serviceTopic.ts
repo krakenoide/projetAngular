@@ -27,10 +27,10 @@ export class serviceTopic {
 
     deleteTopic(id:number){
         this.httpClient.delete(this.apiTopic+`/${id}`)
-                       .subscribe(data =>{this.snackBar.open("Sujet supprimé!");
+                       .subscribe(data =>{this.snackBar.open("Sujet supprimé!","Ok",{duration: 4000});
                     },
                         error => {
-                            this.snackBar.open("Echec de la supression!");
+                            this.snackBar.open("Echec de la supression!","Ok",{duration: 4000});
                         });
     }
 
@@ -39,7 +39,7 @@ export class serviceTopic {
                        .subscribe(data =>{this.topics=data;
                     },
                         error => {
-                            this.snackBar.open("Echec de la récupération des sujets!");
+                            this.snackBar.open("Echec de la récupération des sujets!","Ok",{duration: 4000});
                         });
     }
 
@@ -48,7 +48,7 @@ export class serviceTopic {
                        .subscribe(data =>{return data;
                     },
                         error => {
-                            this.snackBar.open("Echec de la récupération du sujet'!");
+                            this.snackBar.open("Echec de la récupération du sujet!","Ok",{duration: 4000});
                         });
         return this.activeTopic;
     }
@@ -59,17 +59,17 @@ export class serviceTopic {
                         this.snackBar.open("Sujet créé!");  
                     },
                        error => {
-                            this.snackBar.open("Echec de la création du sujet!");
+                            this.snackBar.open("Echec de la création du sujet!","Ok",{duration: 4000});
                        });
     }
 
     modifTopic(ntitle:string){
         this.httpClient.patch<Topic> (this.apiTopic+`/${this.activeTopic.id}`, {title:ntitle})
                        .subscribe(data =>{this.activeTopic=data; 
-                        this.snackBar.open("Titre du sujet modifié!");
+                        this.snackBar.open("Titre du sujet modifié!","Ok",{duration: 4000});
                     },
                        error => {
-                            this.snackBar.open("Echec de la modification!");
+                            this.snackBar.open("Echec de la modification!","Ok",{duration: 4000});
                        });
     }
 

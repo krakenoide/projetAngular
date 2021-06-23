@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { serviceTopic } from './Services/serviceTopic';
+
 
 @Component({
   selector: 'app-root',
@@ -6,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'projetAngular';
+  constructor(private topicservice:serviceTopic){}
 }

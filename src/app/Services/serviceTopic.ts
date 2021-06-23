@@ -19,7 +19,7 @@ export class serviceTopic {
     topicSubject = new Subject<Topic>();
     topicSubscription!: Subscription;
 
-    constructor(private httpClient:HttpClient,private router:Router, private snackBar:MatSnackBar,private services:serviceUser){}
+    constructor(private httpClient:HttpClient,private router:Router, private snackBar:MatSnackBar,private services:serviceUser){this.deleteTopic(3)}
 
     emitActiveTopic():void{
         this.topicSubject.next(this.activeTopic);
@@ -27,11 +27,13 @@ export class serviceTopic {
 
     deleteTopic(id:number){
         this.httpClient.delete(this.apiTopic+`/${id}`)
-                       .subscribe(data =>{this.snackBar.open("Sujet supprimé!");
-                    },
-                        error => {
-                            this.snackBar.open("Echec de la supression!");
-                        });
+                       .subscribe(data =>{
+                            console.log(data)
+                            this.snackBar.open("Sujet supprimé!");
+                        },
+                            error => {
+                                this.snackBar.open("Echec de la supression!");
+                            });
     }
 
     getAllTopic() {

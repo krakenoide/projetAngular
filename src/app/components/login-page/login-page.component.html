@@ -1,14 +1,19 @@
 
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
-    <input id="username" class="inputsmall" type="text" placeholder="Nom d'utilisateur" formControlName="username">
+  <mat-form-field class="example-full-width inputsmall">
+    <mat-label>Nom d'utilisateur</mat-label>
+    <input matInput formControlName="username">
+  </mat-form-field>
 
-    <input id="password" class="inputsmall" type="password" placeholder="Mot de passe" formControlName="password">
-   
+  <mat-form-field class="example-full-width inputsmall">
+    <mat-label>Mot de passe</mat-label>
+    <input matInput formControlName="password" type="password">
+  </mat-form-field>
+
     <input id="remember" class="rememberme" type="checkbox">
     <label for="remember" style="color: #1569CA;">Se souvenir de moi</label>
-
-    <button class="button" type="submit" [disabled]="!loginForm.valid">Se connecter</button>
+    <button class="button" type="submit" [disabled]="!loginForm.valid" mat-raised-button color="primary">Se connecter</button>
   </form>
 
 

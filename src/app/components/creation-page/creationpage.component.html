@@ -1,12 +1,25 @@
     
    
     <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-        <input class="inputsmall" type="text" placeholder="Nom d'utilisateur" formControlName="username">
-        <input class="inputsmall" type="password" placeholder="Mot de passe" formControlName="password">
-        <input class="inputsmall" type="password" placeholder="Confirmer le mot de passe" formControlName="passwordConfirm">
+
+        <mat-form-field class="example-full-width inputsmall">
+            <mat-label>Nom d'utilisateur</mat-label>
+            <input matInput formControlName="username">
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width inputsmall">
+            <mat-label>Mot de passe</mat-label>
+            <input matInput formControlName="password" type="password">
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width inputsmall">
+            <mat-label>Confirmer le mot de passe</mat-label>
+            <input matInput formControlName="passwordConfirm" type="password">
+          </mat-form-field>
+
         <input id="remember" class="rememberme" type="checkbox">
         <label for="remember" style="color: #1569CA;">Se souvenir de moi</label>
-        <button type="submit" class="button" >Créer un Compte</button>
+        <button type="submit" class="button" mat-raised-button color="primary" [disabled]="!myForm.valid">Créer un compte</button>
     </form>
 
     <hr>

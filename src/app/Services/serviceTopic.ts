@@ -43,7 +43,7 @@ export class serviceTopic {
                         });
     }
 
-    getUser(id:number):Topic{
+    getTopic(id:number):Topic{
         this.httpClient.get<Topic> (this.apiTopic+`/${id}`)
                        .subscribe(data =>{return data;
                     },
@@ -56,8 +56,7 @@ export class serviceTopic {
     createTopic(title:string,date:Date,content:Message){
         this.httpClient.post<Topic> (this.apiTopic, {title:title,user:this.connectedUser,date:date,content:content})
                        .subscribe(data =>{this.activeTopic=data;  
-                        this.snackBar.open("Sujet créé!"); 
-                        this.redirectToHomePage(); 
+                        this.snackBar.open("Sujet créé!");  
                     },
                        error => {
                             this.snackBar.open("Echec de la création du sujet!");
@@ -68,7 +67,6 @@ export class serviceTopic {
         this.httpClient.patch<Topic> (this.apiTopic+`/${this.activeTopic.id}`, {title:ntitle})
                        .subscribe(data =>{this.activeTopic=data; 
                         this.snackBar.open("Titre du sujet modifié!");
-                        this.redirectToHomePage();
                     },
                        error => {
                             this.snackBar.open("Echec de la modification!");
@@ -78,4 +76,8 @@ export class serviceTopic {
     redirectToHomePage() : void {
        this.router.navigate(['']);
     }
+
+    redirectToTopicPage() : void {
+        this.router.navigate(['']);
+     }
 }

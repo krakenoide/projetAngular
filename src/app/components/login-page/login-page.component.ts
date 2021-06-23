@@ -17,13 +17,13 @@ export class LoginPageComponent implements OnInit{
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       username: ['',[Validators.required,Validators.minLength(3),Validators.maxLength(50)]],
-      password: ['',[Validators.required,Validators.minLength(3),Validators.maxLength(50)]]
+      password: ['',[Validators.required,Validators.minLength(3),Validators.maxLength(50)]],
+      rememberme: [false]
     });
   } 
 
   onSubmit(): void {
-    this.services.login(this.loginForm.value.username,this.loginForm.value.password);
-        
+    this.services.login(this.loginForm.value.username,this.loginForm.value.password,this.loginForm.value.rememberme);
     console.log(this.loginForm.value.username);
     console.log(this.loginForm.value.password);
   }

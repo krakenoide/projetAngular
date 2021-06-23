@@ -17,9 +17,8 @@
             <input matInput formControlName="passwordConfirm" type="password">
           </mat-form-field>
 
-          <mat-checkbox color="primary" class="example-margin rememberme" style="color: #1569CA;">Se souvenir de moi</mat-checkbox>
+          <mat-checkbox color="primary" class="example-margin rememberme" style="color: #1569CA;" formControlName="rememberme">Se souvenir de moi</mat-checkbox>
         
         <button type="submit" class="button" mat-raised-button color="primary" [disabled]="!myForm.valid">Créer un compte</button>
     </form>
 
-    <!-- <p *ngIf="myForm.dirty && myForm.controls.username.invalid">Message d'erreur : {{getUsernameErrors() }}</p> -->

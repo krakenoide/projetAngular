@@ -17,7 +17,8 @@ export class CreationPageComponent implements OnInit {
     this.myForm = this.formBuilder.group({
       username: ['',[Validators.required,Validators.minLength(3),Validators.maxLength(50)]],
       password: ['',[Validators.required,Validators.minLength(3),Validators.maxLength(50)]],
-      passwordConfirm: ['',[Validators.required]]
+      passwordConfirm: ['',[Validators.required]],
+      rememberme: [false]
     });
     
   }
@@ -27,7 +28,7 @@ export class CreationPageComponent implements OnInit {
     if(this.myForm.value.password!==this.myForm.value.passwordConfirm) {
         console.log("les mdp de correspondent pas !");
     } else {
-        this.services.createUser(this.myForm.value.username,this.myForm.value.password,this.myForm.value.passwordConfirm);
+        this.services.createUser(this.myForm.value.username,this.myForm.value.password,this.myForm.value.passwordConfirm,this.myForm.value.rememberme);
     }
   }
 

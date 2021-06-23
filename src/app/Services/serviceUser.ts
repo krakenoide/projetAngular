@@ -75,7 +75,7 @@ export class serviceUser {
     }
 
     createUser(username:string,password:string,passwordbis:string,rememberme:boolean){
-        this.httpClient.post<User> (this.apiUser, {username:username,password:password,passwordbis:passwordbis})
+        this.httpClient.post<User> (this.apiUser, {username:username,password:password,passwordConfirm:passwordbis})
                        .subscribe(data =>{this.connectedUser=data; 
                         this.emitConnectedUser();
                         if (rememberme) {
@@ -90,9 +90,12 @@ export class serviceUser {
     }
 
     modifUser(nusername:string,oldpassword:string,npassword:string,npasswordbis:string){
-        this.httpClient.post<User> (this.apiUser+`/${this.connectedUser.id}`, {username:nusername,oldpassword:oldpassword,password:npassword,passwordbis:npasswordbis})
+        this.httpClient.post<User> (this.apiUser+`/${this.connectedUser.id}`, {username:nusername,oldPassword:oldpassword,password:npassword,passwordConfirm:npasswordbis})
                        .subscribe(data =>{this.connectedUser=data;
                         this.emitConnectedUser(); 
+                        if (localStorage.getItem("storedUser")) {
+                            localStorage.setItem("storedUser",JSON.stringify(this.connectedUser));    
+                        }
                         this.snackBar.open("Utilisateur connecté modifié!");
                         this.redirectToHomePage();
                     },

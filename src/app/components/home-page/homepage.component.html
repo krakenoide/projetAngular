@@ -1,8 +1,24 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+<mat-form-field class="example-full-width inputsmall">
+    <mat-label>Titre</mat-label>
+    <input matInput formControlName="title">
+  </mat-form-field>
 
+  <mat-form-field class="example-full-width inputlarge">
+    <mat-label>Message</mat-label>
+    <textarea matInput formControlName="message"></textarea>
+  </mat-form-field>
 
+  <button type="submit" class="button" mat-raised-button color="primary">Ajouter un nouveau sujet</button>
+</form>
 
+<mat-form-field class="example-full-width inputsmall">
+    <mat-label>Filtrer par titre ou par auteur</mat-label>
+    <input matInput>
+  </mat-form-field>
+
+  
 
 <a href="login">login</a> <br>
 <a href="modif">modif</a> <br>
 <a href="creationpage">creationpage</a>
-

@@ -16,6 +16,7 @@ export class HomePageComponent implements OnInit {
   myControl = new FormControl();
   options: string[] = ['Topic1', 'Topic2', 'Topic3'];
   filteredOptions!: Observable<string[]>;
+  in:boolean=false;
 
   constructor(private formBuilder: FormBuilder,private services:serviceUser) { 
   }
@@ -64,5 +65,15 @@ export class HomePageComponent implements OnInit {
       return "Le titre doit comporter au maximum 3000 caractères";
     }
   }
+
+  
+    mouseEnter(){
+      this.in=true;
+   }
+  
+   mouseLeave(){
+     this.in=false;
+   }
+  
   
 }

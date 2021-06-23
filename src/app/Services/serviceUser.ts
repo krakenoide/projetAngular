@@ -33,11 +33,13 @@ export class serviceUser {
 
     login(username:string,password:string,rememberme:boolean) {
         this.httpClient.post<User> (this.urlLogin, {username:username,password:password})
-                       .subscribe(data =>{this.connectedUser=data;
-                        this.emitConnectedUser();
+                       .subscribe(data =>{
+                        this.setConnectedUser(data);
                         if (rememberme) {
                             localStorage.setItem("storedUser",JSON.stringify(this.connectedUser));
-                        } else {localStorage.removeItem("storedUser")}
+                        } else {
+                            localStorage.removeItem("storedUser")
+                        }
                         this.snackBar.open("Vous êtes connectés!","Ok",{duration: 4000});
                         this.redirectToHomePage();
                     },
@@ -76,11 +78,13 @@ export class serviceUser {
 
     createUser(username:string,password:string,passwordbis:string,rememberme:boolean){
         this.httpClient.post<User> (this.apiUser, {username:username,password:password,passwordConfirm:passwordbis})
-                       .subscribe(data =>{this.connectedUser=data; 
-                        this.emitConnectedUser();
+                       .subscribe(data =>{
+                        this.setConnectedUser(data); 
                         if (rememberme) {
                             localStorage.setItem("storedUser",JSON.stringify(this.connectedUser));
-                        } else {localStorage.removeItem("storedUser")}  
+                        } else {
+                            localStorage.removeItem("storedUser")
+                        }  
                         this.snackBar.open("Utilisateur créé, vous êtes connectés!","Ok",{duration: 4000}); 
                         this.redirectToHomePage(); 
                     },
@@ -98,8 +102,8 @@ export class serviceUser {
             npasswordbis=oldpassword;
         }
         this.httpClient.patch<User> (this.apiUser+`/${this.connectedUser.id}`, {username:nusername,password:npassword,passwordConfirm:npasswordbis,oldPassword:oldpassword})
-                       .subscribe(data =>{this.connectedUser=data;
-                        this.emitConnectedUser(); 
+                       .subscribe(data =>{
+                        this.setConnectedUser(data);
                         if (localStorage.getItem("storedUser")) {
                             localStorage.setItem("storedUser",JSON.stringify(this.connectedUser));    
                         }

@@ -13,6 +13,7 @@ import { HomePageComponent } from './components/home-page/homepage.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { PageModifComponent } from './components/page-modif/page-modif.component';
+import {MatButtonModule} from '@angular/material/button'; 
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { PageModifComponent } from './components/page-modif/page-modif.component
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatButtonModule
   ],
   providers: [serviceUser,
               serviceMessage,

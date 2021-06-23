@@ -1,13 +1,15 @@
 
     <ul class="nav-links">
     <li>
-        <a id="buttonPageAccueil" href="">Accueil</a>
+        <button id="buttonAccueil" (click)="clickAccueil()">Accueil</button>
      </li>
      <li>
-         <a id="buttonCreateCompte" href="">Créer compte</a>
+        <button id="buttonCreaCompte" (click)="clickCreationCompte()" *ngIf="user.id==0">Créer compte</button>
+        <button id="buttonModifCompte" (click)="clickModifCompte()" *ngIf="user.id>0">Modifier compte</button>
      </li>
      <li>
-         <a id="buttonLogin" href="">Se connecter</a>
+        <button id="buttonLogin" (click)="clickLogout()" *ngIf="user.id==0">Login</button>
+        <button id="buttonLogout" (click)="clickLogout()" *ngIf="user.id>0">Logout</button>
      </li>
     </ul>
     

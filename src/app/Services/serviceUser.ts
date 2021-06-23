@@ -3,6 +3,7 @@ import { Subject } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { User } from "src/app/modeles/User";
 import { ActivatedRoute, Router } from "@angular/router";
+import { HeaderComponent } from "../components/header/header.component";
 
 @Injectable()
 export class serviceUser {
@@ -12,7 +13,11 @@ export class serviceUser {
     urlLogin = "http://localhost:8080/login"
     userSubject = new Subject<User>();
 
-    constructor(private httpClient:HttpClient,private router:Router){}
+    constructor(private httpClient:HttpClient,private router:Router){
+        if(this.connectedUser==null){
+            this.connectedUser = new User(0,"","",0);
+        }
+    }
 
     setConnectedUser(cuser:User):void {
         this.connectedUser=cuser;
@@ -51,7 +56,8 @@ export class serviceUser {
 
     createUser(username:string,password:string,passwordbis:string){
         this.httpClient.post<User> (this.apiUser, {username:username,password:password,passwordbis:passwordbis})
-                       .subscribe(data =>{this.connectedUser=data; this.emitConnectedUser();   this.redirectToHomePage();
+                       .subscribe(data =>{this.connectedUser=data; this.emitConnectedUser();   
+                        this.redirectToHomePage();
                         
                     },
                        error => {

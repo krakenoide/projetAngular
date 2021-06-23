@@ -31,10 +31,13 @@ export class serviceUser {
         this.userSubject.next(this.connectedUser);
     }
 
-    login(username:string,password:string) {
+    login(username:string,password:string,rememberme:boolean) {
         this.httpClient.post<User> (this.urlLogin, {username:username,password:password})
                        .subscribe(data =>{this.connectedUser=data;
                         this.emitConnectedUser();
+                        if (rememberme) {
+                            localStorage.setItem("storedUser",JSON.stringify(this.connectedUser));
+                        } else {localStorage.removeItem("storedUser")}
                         this.snackBar.open("Vous êtes connectés!");
                         this.redirectToHomePage();
                     },
@@ -71,10 +74,13 @@ export class serviceUser {
         return this.connectedUser;
     }
 
-    createUser(username:string,password:string,passwordbis:string){
+    createUser(username:string,password:string,passwordbis:string,rememberme:boolean){
         this.httpClient.post<User> (this.apiUser, {username:username,password:password,passwordbis:passwordbis})
                        .subscribe(data =>{this.connectedUser=data; 
-                        this.emitConnectedUser();  
+                        this.emitConnectedUser();
+                        if (rememberme) {
+                            localStorage.setItem("storedUser",JSON.stringify(this.connectedUser));
+                        } else {localStorage.removeItem("storedUser")}  
                         this.snackBar.open("Utilisateur créé, vous êtes connectés!"); 
                         this.redirectToHomePage(); 
                     },

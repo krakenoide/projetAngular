@@ -1,15 +1,15 @@
 
     <ul class="nav-links">
     <li>
-        <button id="buttonAccueil" (click)="clickAccueil()">Accueil</button>
+        <a id="buttonAccueil" (click)="clickAccueil()">Accueil</a>
      </li>
      <li>
-        <button id="buttonCreaCompte" (click)="clickCreationCompte()" *ngIf="user.id==0">Créer compte</button>
-        <button id="buttonModifCompte" (click)="clickModifCompte()" *ngIf="user.id>0">Modifier compte</button>
+        <a id="buttonCreaCompte" (click)="clickCreationCompte()" *ngIf="user.id==0">Créer compte</a>
+        <a id="buttonModifCompte" (click)="clickModifCompte()" *ngIf="user.id>0">Modifier compte</a>
      </li>
      <li>
-        <button id="buttonLogin" (click)="clickLogout()" *ngIf="user.id==0">Login</button>
-        <button id="buttonLogout" (click)="clickLogout()" *ngIf="user.id>0">Logout</button>
+        <a id="buttonLogin" (click)="clickLogin()" *ngIf="user.id==0">Login</a>
+        <a id="buttonLogout" (click)="clickLogout()" *ngIf="user.id>0">Logout</a>
      </li>
     </ul>
     

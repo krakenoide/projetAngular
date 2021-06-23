@@ -42,7 +42,6 @@ export class HeaderComponent implements OnInit {
   }
   clickLogout():void{
     this.services.setConnectedUser(new User(0,"","",0));
-    this.services.emitConnectedUser();
     this.router.navigate(['']);
   }
 }

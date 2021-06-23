@@ -13,6 +13,9 @@ import { HomePageComponent } from './components/home-page/homepage.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { PageModifComponent } from './components/page-modif/page-modif.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
+
 
 
 
@@ -23,14 +26,15 @@ import { PageModifComponent } from './components/page-modif/page-modif.component
     HomePageComponent,
     HeaderComponent,
     LoginPageComponent,
-    PageModifComponent
+    PageModifComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule
   ],
   providers: [serviceUser,
               serviceMessage,

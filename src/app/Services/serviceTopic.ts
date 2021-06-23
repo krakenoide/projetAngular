@@ -39,7 +39,7 @@ export class serviceTopic {
                        .subscribe(data =>{this.topics=data;
                     },
                         error => {
-                            this.snackBar.open("Echec de la récupération des utilisateurs!");
+                            this.snackBar.open("Echec de la récupération des sujets!");
                         });
     }
 
@@ -48,7 +48,7 @@ export class serviceTopic {
                        .subscribe(data =>{return data;
                     },
                         error => {
-                            this.snackBar.open("Echec de la récupération d'un utilisateur'!");
+                            this.snackBar.open("Echec de la récupération du sujet'!");
                         });
         return this.activeTopic;
     }

@@ -90,7 +90,7 @@ export class serviceUser {
     }
 
     modifUser(nusername:string,oldpassword:string,npassword:string,npasswordbis:string){
-        this.httpClient.post<User> (this.apiUser+`/${this.connectedUser.id}`, {username:nusername,oldPassword:oldpassword,password:npassword,passwordConfirm:npasswordbis})
+        this.httpClient.patch<User> (this.apiUser+`/${this.connectedUser.id}`, {username:nusername,oldPassword:oldpassword,password:npassword,passwordConfirm:npasswordbis})
                        .subscribe(data =>{this.connectedUser=data;
                         this.emitConnectedUser(); 
                         if (localStorage.getItem("storedUser")) {

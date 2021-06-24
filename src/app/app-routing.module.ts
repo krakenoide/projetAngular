@@ -7,15 +7,15 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { PageModifComponent } from './components/page-modif/page-modif.component';
 
 const routes: Routes = [
-  {path: 'login',component: LoginPageComponent},
-  {path:'modif',component:PageModifComponent},
-  {path: '', component:HomePageComponent},
-  {path: 'creationpage', component:CreationPageComponent},
-  {path: 'header', component:HeaderComponent}
+	{path: 'login',component: LoginPageComponent},
+	{path:'modif',component:PageModifComponent},
+	{path: '', component:HomePageComponent},
+	{path: 'creationpage', component:CreationPageComponent},
+	{path: 'header', component:HeaderComponent}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+	imports: [RouterModule.forRoot(routes)],
+	exports: [RouterModule]
 })
 export class AppRoutingModule { }

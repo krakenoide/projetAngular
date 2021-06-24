@@ -1,5 +1,5 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
-import { FormGroup, NgForm, Validators, FormBuilder, FormControl } from '@angular/forms';
+import { Component, OnInit} from '@angular/core';
+import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
 import {Observable,Subscription} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { User } from 'src/app/modeles/User';
@@ -124,15 +124,6 @@ export class HomePageComponent implements OnInit {
 		}
 	}
 
-<<<<<<< HEAD
-  }
-
-  modify (topic:Topic) {
-    if (this.connectedUser===topic.author || this.connectedUser.admin===1) {
-      this.servicesTopic.modifTopic("placeholder",topic.id);    
-    } else { this.snackBar.open("Droits insuffisant pour modifier ce sujet!","Ok",{duration:4000})}
-  }
-=======
 	modify (topic:Topic) {
 		if (this.connectedUser===topic.author || this.connectedUser.admin===1) {
 			this.servicesTopic.modifTopic("placeholder",topic.id);
@@ -140,5 +131,4 @@ export class HomePageComponent implements OnInit {
 			this.snackBar.open("Droits insuffisant pour modifier ce sujet!","Ok",{duration:4000})
 		}
 	}
->>>>>>> a2c334e9a8a75e7c3d4951166cd62d155b7f30ca
 }

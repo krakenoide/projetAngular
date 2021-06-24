@@ -10,7 +10,7 @@ import { serviceUser } from 'src/app/Services/serviceUser';
 export class CreationPageComponent implements OnInit {
   myForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder,private services:serviceUser) { 
+  constructor(private formBuilder: FormBuilder,private servicesUser:serviceUser) { 
   }
 
   ngOnInit(): void {
@@ -28,7 +28,7 @@ export class CreationPageComponent implements OnInit {
     if(this.myForm.value.password!==this.myForm.value.passwordConfirm) {
         console.log("les mdp de correspondent pas !");
     } else {
-        this.services.createUser(this.myForm.value.username,this.myForm.value.password,this.myForm.value.passwordConfirm,this.myForm.value.rememberme);
+        this.servicesUser.createUser(this.myForm.value.username,this.myForm.value.password,this.myForm.value.passwordConfirm,this.myForm.value.rememberme);
     }
   }
 

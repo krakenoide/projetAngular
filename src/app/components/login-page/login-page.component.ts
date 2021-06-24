@@ -11,7 +11,7 @@ import { serviceUser } from '../../Services/serviceUser';
 export class LoginPageComponent implements OnInit{
   loginForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder,private services:serviceUser) { 
+  constructor(private formBuilder: FormBuilder,private servicesUser:serviceUser) { 
   }
 
   ngOnInit(): void {
@@ -23,7 +23,7 @@ export class LoginPageComponent implements OnInit{
   } 
 
   onSubmit(): void {
-    this.services.login(this.loginForm.value.username,this.loginForm.value.password,this.loginForm.value.rememberme);
+    this.servicesUser.login(this.loginForm.value.username,this.loginForm.value.password,this.loginForm.value.rememberme);
     console.log(this.loginForm.value.username);
     console.log(this.loginForm.value.password);
   }

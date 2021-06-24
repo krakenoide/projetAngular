@@ -19,10 +19,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
-
-
-
-
 @NgModule({
   declarations: [
     AppComponent,

@@ -48,29 +48,25 @@
 }
 
 .topicline{
-    display: inline-block;
+    display: flex;
 }
 
 .topic {
+    font-size: 30px;
+    font-weight: 500;
     color: #1569CA;
-    width: 50%;
+    width: 100%;
+}
+.details {
+    font-size: 25px;
+    font-weight: 500;
+    color: #160c9c;
+    width: 100%;
 }
 
-.btnmodif {
+.btn {
     color: white;
-    background-color: #1569CA;
-    border: none;
     width: 100px;
-    height: 40px;
-    margin-left: 33.95%;
-}
-
-.btnsupp {
-    color: white;
-    background-color: red;
-    border: none;
-    width: 100px;
-    height: 40px;
 }
 
 

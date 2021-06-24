@@ -1,9 +1,12 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, NgForm, Validators, FormBuilder, FormControl } from '@angular/forms';
-import {Observable} from 'rxjs';
+import {Observable,Subscription} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { User } from 'src/app/modeles/User';
+import { Topic } from 'src/app/modeles/Topic';
 import { serviceUser } from '../../Services/serviceUser';
+import { serviceTopic } from '../../Services/serviceTopic';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-home-page',
@@ -14,10 +17,22 @@ export class HomePageComponent implements OnInit {
   connectedUser!: User;
   myForm!: FormGroup;
   myControl = new FormControl();
-  options: string[] = ['Topic1', 'Topic2', 'Topic3'];
-  filteredOptions!: Observable<string[]>;
+  topicList: Topic[]=[];
+  filteredTopics!: Observable<Topic[]>;
+  booleanlist:boolean[]=[];
+  topicSubscription!: Subscription;
 
-  constructor(private formBuilder: FormBuilder,private services:serviceUser) { 
+  constructor(private formBuilder: FormBuilder,private servicesUser:serviceUser,private servicesTopic:serviceTopic,private router:Router) { 
+    this.topicSubscription = this.servicesTopic.topicAllSubject.subscribe((topicServiceList:Topic[]) => {
+      this.topicList=<Topic[]>topicServiceList;
+      if (topicServiceList===undefined){
+        this.topicList=[];
+      }
+      this.filteredTopics=new Observable(observer => {
+        observer.next(topicServiceList);
+      });
+    });
+    this.servicesTopic.emitAllTopics();
   }
 
   ngOnInit(): void {   
@@ -26,17 +41,26 @@ export class HomePageComponent implements OnInit {
       message: ['',[Validators.required,Validators.minLength(5),Validators.maxLength(3000)]]
     });  
 
-    this.filteredOptions = this.myControl.valueChanges.pipe(
+    if (this.filteredTopics) {
+    this.filteredTopics = this.myControl.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value))
-    );
+    );}
+    this.mousecheck();
+    
+    
   }
 
-  private _filter(value: string): string[] {
+  private _filter(value: string): Topic[] {
     const filterValue = value.toLowerCase();
+    let TitleTab: Topic[]=[];
+    this.topicList.forEach(topic => {
+      TitleTab.push(topic);
+    });
 
-    return this.options.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
+    return TitleTab.filter(topic => topic.title.toLowerCase().indexOf(filterValue) === 0);
   }
+  
 
   onSubmit(): void {
   }
@@ -65,4 +89,24 @@ export class HomePageComponent implements OnInit {
     }
   }
   
+  mouseEnterlist(i:number){
+    this.booleanlist[i]=true; 
+  }
+
+  mouseLeavelist(i:number){
+    this.booleanlist[i]=false; 
+  }
+  
+   mousecheck(){
+    if(this.topicList){
+      for (let i=0;i<this.topicList.length;i++){
+        this.booleanlist.push(false);
+      }
+    }
+  }
+  goToTopic(id:number) {
+      this.servicesTopic.activeTopic=this.servicesTopic.getTopic(id);
+      this.router.navigate(['topic']);
+  }
+
 }

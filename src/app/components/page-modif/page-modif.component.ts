@@ -16,23 +16,23 @@ export class PageModifComponent implements OnInit {
 
   formModif!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private services:serviceUser) { 
-    this.userSubscription = this.services.userSubject.subscribe((connectedUser:User) => {this.user=connectedUser;
+  constructor(private formBuilder: FormBuilder, private servicesUser:serviceUser) { 
+    this.userSubscription = this.servicesUser.userSubject.subscribe((connectedUser:User) => {this.user=connectedUser;
     })
-    this.services.emitConnectedUser();
+    this.servicesUser.emitConnectedUser();
   }
   ngOnInit(): void {
     this.formModif=this.formBuilder.group({
-      nusername:["",[Validators.required,Validators.maxLength(50)]],
+      nusername:["",[Validators.maxLength(50)]],
       oldpassword:["",[Validators.required]],
-      npassword:["",[Validators.required]],
-      npasswordbis:["",[Validators.required]]
+      npassword:["",],
+      npasswordbis:["",]
     })
   }
 
   onSubmit(): void {
-      this.services.modifUser(this.formModif.value.nusername,this.formModif.value.oldpassword,this.formModif.value.npassword,this.formModif.value.npasswordbis);
-  }
+      this.servicesUser.modifUser(this.formModif.value.nusername,this.formModif.value.oldpassword,this.formModif.value.npassword,this.formModif.value.npasswordbis);
+    }
 
   getErrors():string|void {
 

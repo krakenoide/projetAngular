@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { Topic } from "src/app/modeles/Topic";
-import { ActivatedRoute, Router } from "@angular/router";
+import { Router } from "@angular/router";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { User } from "../modeles/User";
 import { Message } from "../modeles/Message";
@@ -14,34 +14,43 @@ import { serviceUser } from '../Services/serviceUser';
 export class serviceTopic {
     connectedUser!:User;
     activeTopic!: Topic;
-    topics!: Topic[];
+    topicServiceList!: Topic[];
     apiTopic = "http://localhost:8080/api/topic"
     topicSubject = new Subject<Topic>();
+    topicAllSubject = new Subject<Topic[]>();
     topicSubscription!: Subscription;
 
-    constructor(private httpClient:HttpClient,private router:Router, private snackBar:MatSnackBar,private services:serviceUser){this.deleteTopic(3)}
+    constructor(private httpClient:HttpClient,private router:Router, private snackBar:MatSnackBar,private servicesUser:serviceUser){
+        this.getAllTopic();
+    }
 
     emitActiveTopic():void{
         this.topicSubject.next(this.activeTopic);
     }
 
+    emitAllTopics():void{
+        this.topicAllSubject.next(this.topicServiceList);
+    }
+
     deleteTopic(id:number){
         this.httpClient.delete(this.apiTopic+`/${id}`)
-                       .subscribe(data =>{
-                            console.log(data)
-                            this.snackBar.open("Sujet supprimé!");
-                        },
-                            error => {
-                                this.snackBar.open("Echec de la supression!");
-                            });
+                       .subscribe(data =>{this.snackBar.open("Sujet supprimé!","Ok",{duration: 4000});
+                    },
+                        error => {
+                            this.snackBar.open("Echec de la supression!","Ok",{duration: 4000});
+                        });
     }
 
     getAllTopic() {
         this.httpClient.get<Topic[]> (this.apiTopic)
-                       .subscribe(data =>{this.topics=data;
+                       .subscribe(data =>{
+                           this.topicServiceList=data;
+                           this.emitAllTopics();
+                           console.log(this.topicServiceList);
+                           
                     },
                         error => {
-                            this.snackBar.open("Echec de la récupération des sujets!");
+                            this.snackBar.open("Echec de la récupération des sujets!","Ok",{duration: 4000});
                         });
     }
 
@@ -50,7 +59,7 @@ export class serviceTopic {
                        .subscribe(data =>{return data;
                     },
                         error => {
-                            this.snackBar.open("Echec de la récupération du sujet'!");
+                            this.snackBar.open("Echec de la récupération du sujet!","Ok",{duration: 4000});
                         });
         return this.activeTopic;
     }
@@ -61,17 +70,17 @@ export class serviceTopic {
                         this.snackBar.open("Sujet créé!");  
                     },
                        error => {
-                            this.snackBar.open("Echec de la création du sujet!");
+                            this.snackBar.open("Echec de la création du sujet!","Ok",{duration: 4000});
                        });
     }
 
     modifTopic(ntitle:string){
         this.httpClient.patch<Topic> (this.apiTopic+`/${this.activeTopic.id}`, {title:ntitle})
                        .subscribe(data =>{this.activeTopic=data; 
-                        this.snackBar.open("Titre du sujet modifié!");
+                        this.snackBar.open("Titre du sujet modifié!","Ok",{duration: 4000});
                     },
                        error => {
-                            this.snackBar.open("Echec de la modification!");
+                            this.snackBar.open("Echec de la modification!","Ok",{duration: 4000});
                        });
     }
 

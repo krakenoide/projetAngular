@@ -20,13 +20,13 @@
            [formControl]="myControl"
            [matAutocomplete]="auto">
     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+      <mat-option *ngFor="let option of filteredTopics | async" [value]="option">
         {{option}}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
 
-  <div class="topicline" *ngFor="let option of filteredOptions  | async;let index=index">
+  <div class="topicline" *ngFor="let option of filteredTopics  | async;let index=index">
   <h2 class="topic" (mouseleave) ="mouseLeavelist(index)" *ngIf="booleanlist[index]">{{option}} User1 Date1</h2>
   <a class="topic" (mouseenter) ="mouseEnterlist(index)" *ngIf="!booleanlist[index]" (click)=>{{option}} <a>
     <button type="submit" class="btn" mat-raised-button color="primary">Modifier</button>

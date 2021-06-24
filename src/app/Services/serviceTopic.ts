@@ -14,15 +14,21 @@ import { serviceUser } from '../Services/serviceUser';
 export class serviceTopic {
     connectedUser!:User;
     activeTopic!: Topic;
-    topics!: Topic[];
+    topicServiceList!: Topic[];
     apiTopic = "http://localhost:8080/api/topic"
     topicSubject = new Subject<Topic>();
+    topicAllSubject = new Subject<Topic[]>();
     topicSubscription!: Subscription;
 
-    constructor(private httpClient:HttpClient,private router:Router, private snackBar:MatSnackBar,private services:serviceUser){}
+    constructor(private httpClient:HttpClient,private router:Router, private snackBar:MatSnackBar,private servicesUser:serviceUser){}
 
     emitActiveTopic():void{
         this.topicSubject.next(this.activeTopic);
+    }
+
+    emitAllTopics():void{
+        this.getAllTopic();
+        this.topicAllSubject.next(this.topicServiceList);
     }
 
     deleteTopic(id:number){
@@ -36,7 +42,9 @@ export class serviceTopic {
 
     getAllTopic() {
         this.httpClient.get<Topic[]> (this.apiTopic)
-                       .subscribe(data =>{this.topics=data;
+                       .subscribe(data =>{
+                           this.topicServiceList=data;
+                           console.log(this.topicServiceList);
                     },
                         error => {
                             this.snackBar.open("Echec de la récupération des sujets!","Ok",{duration: 4000});

@@ -2,6 +2,7 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, NgForm, Validators, FormBuilder } from '@angular/forms';
 import { User } from 'src/app/modeles/User';
 import { serviceUser } from '../../Services/serviceUser';
+import { serviceTopic } from '../../Services/serviceTopic';
 import { Subscription } from 'rxjs';
 import {MatButtonModule} from '@angular/material/button'; 
 import { Router } from '@angular/router';
@@ -16,11 +17,11 @@ export class HeaderComponent implements OnInit {
   userSubscription!: Subscription;
 
 
-  constructor( private servicesUser:serviceUser,private router:Router) { 
+  constructor( private servicesUser:serviceUser,private router:Router,private servicesTopic:serviceTopic) { 
     this.userSubscription = this.servicesUser.userSubject.subscribe((connectedUser:User) => {
     this.user=connectedUser;
     })
-    
+    this.servicesTopic.emitAllTopics();
     this.servicesUser.emitConnectedUser();
   }
 

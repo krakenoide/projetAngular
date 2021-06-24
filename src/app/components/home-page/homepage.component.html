@@ -20,15 +20,16 @@
            [formControl]="myControl"
            [matAutocomplete]="auto">
     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-      <mat-option *ngFor="let option of filteredTopics | async" [value]="option">
-        {{option}}
+      <mat-option *ngFor="let topic of filteredTopics | async" [value]="topic">
+        {{topic.title}}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
 
-  <div class="topicline" *ngFor="let option of filteredTopics  | async;let index=index">
-  <h2 class="topic" (mouseleave) ="mouseLeavelist(index)" *ngIf="booleanlist[index]">{{option}} User1 Date1</h2>
-  <a class="topic" (mouseenter) ="mouseEnterlist(index)" *ngIf="!booleanlist[index]" (click)=>{{option}} <a>
+  <div class="topicline" *ngFor="let topic of filteredTopics  | async;let index=index">
+  <a class="topic" (mouseleave) ="mouseLeavelist(index)" *ngIf="booleanlist[index]" (click)="goToTopic(topic.id)">{{topic.title}} 
+    <span class="details">{{topic.author.username}} {{topic.date}}</span></a>
+  <a class="topic" (mouseenter) ="mouseEnterlist(index)" *ngIf="!booleanlist[index]">{{topic.title}} </a>
     <button type="submit" class="btn" mat-raised-button color="primary">Modifier</button>
     <button type="submit" class="btn" mat-raised-button color="warn">Supprimer</button>
   </div>

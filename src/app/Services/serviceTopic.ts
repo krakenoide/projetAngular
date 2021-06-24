@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { Topic } from "src/app/modeles/Topic";
-import { ActivatedRoute, Router } from "@angular/router";
+import { Router } from "@angular/router";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { User } from "../modeles/User";
 import { Message } from "../modeles/Message";
@@ -20,14 +20,15 @@ export class serviceTopic {
     topicAllSubject = new Subject<Topic[]>();
     topicSubscription!: Subscription;
 
-    constructor(private httpClient:HttpClient,private router:Router, private snackBar:MatSnackBar,private servicesUser:serviceUser){}
+    constructor(private httpClient:HttpClient,private router:Router, private snackBar:MatSnackBar,private servicesUser:serviceUser){
+        this.getAllTopic();
+    }
 
     emitActiveTopic():void{
         this.topicSubject.next(this.activeTopic);
     }
 
     emitAllTopics():void{
-        this.getAllTopic();
         this.topicAllSubject.next(this.topicServiceList);
     }
 
@@ -44,7 +45,9 @@ export class serviceTopic {
         this.httpClient.get<Topic[]> (this.apiTopic)
                        .subscribe(data =>{
                            this.topicServiceList=data;
+                           this.emitAllTopics();
                            console.log(this.topicServiceList);
+                           
                     },
                         error => {
                             this.snackBar.open("Echec de la récupération des sujets!","Ok",{duration: 4000});

@@ -6,6 +6,7 @@ import { User } from 'src/app/modeles/User';
 import { Topic } from 'src/app/modeles/Topic';
 import { serviceUser } from '../../Services/serviceUser';
 import { serviceTopic } from '../../Services/serviceTopic';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-home-page',
@@ -16,16 +17,22 @@ export class HomePageComponent implements OnInit {
   connectedUser!: User;
   myForm!: FormGroup;
   myControl = new FormControl();
-  topicList!: Topic[];
-  filteredTopics!: Observable<string[]>;
+  topicList: Topic[]=[];
+  filteredTopics!: Observable<Topic[]>;
   booleanlist:boolean[]=[];
   topicSubscription!: Subscription;
 
-  constructor(private formBuilder: FormBuilder,private servicesUser:serviceUser,private servicesTopic:serviceTopic) { 
-    this.topicSubscription = this.servicesTopic.topicSubject.subscribe((topicServiceList:any) => {
+  constructor(private formBuilder: FormBuilder,private servicesUser:serviceUser,private servicesTopic:serviceTopic,private router:Router) { 
+    this.topicSubscription = this.servicesTopic.topicAllSubject.subscribe((topicServiceList:Topic[]) => {
       this.topicList=<Topic[]>topicServiceList;
-      console.log(this.topicList);
+      if (topicServiceList===undefined){
+        this.topicList=[];
+      }
+      this.filteredTopics=new Observable(observer => {
+        observer.next(topicServiceList);
+      });
     });
+    this.servicesTopic.emitAllTopics();
   }
 
   ngOnInit(): void {   
@@ -34,25 +41,24 @@ export class HomePageComponent implements OnInit {
       message: ['',[Validators.required,Validators.minLength(5),Validators.maxLength(3000)]]
     });  
 
-    console.log(this.servicesTopic.topicServiceList);
-    console.log(this.topicList);
+    if (this.filteredTopics) {
     this.filteredTopics = this.myControl.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value))
-    );
+    );}
     this.mousecheck();
     
     
   }
 
-  private _filter(value: string): string[] {
+  private _filter(value: string): Topic[] {
     const filterValue = value.toLowerCase();
-    let TitleTab: string[]=[];
+    let TitleTab: Topic[]=[];
     this.topicList.forEach(topic => {
-      TitleTab.push(topic.title);
+      TitleTab.push(topic);
     });
 
-    return TitleTab.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
+    return TitleTab.filter(topic => topic.title.toLowerCase().indexOf(filterValue) === 0);
   }
   
 
@@ -92,22 +98,15 @@ export class HomePageComponent implements OnInit {
   }
   
    mousecheck(){
-<<<<<<< HEAD
-   for (let i=0;i<this.options.length;i++){
-      this.booleanlist.push(false);
-   }
-   }
-
-   topicSelect(id:number) {
-      
-   }
-=======
     if(this.topicList){
       for (let i=0;i<this.topicList.length;i++){
         this.booleanlist.push(false);
       }
     }
   }
->>>>>>> 2281acedc487518f715155c517a039cdbc148f66
-  
+  goToTopic(id:number) {
+      this.servicesTopic.activeTopic=this.servicesTopic.getTopic(id);
+      this.router.navigate(['topic']);
+  }
+
 }

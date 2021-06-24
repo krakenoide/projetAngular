@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { serviceUser } from './Services/serviceUser'
 import { serviceTopic } from './Services/serviceTopic'

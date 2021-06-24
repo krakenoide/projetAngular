@@ -52,7 +52,15 @@
 }
 
 .topic {
+    font-size: 30px;
+    font-weight: 500;
     color: #1569CA;
+    width: 100%;
+}
+.details {
+    font-size: 25px;
+    font-weight: 500;
+    color: #160c9c;
     width: 100%;
 }
 

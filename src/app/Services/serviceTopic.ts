@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Subject } from "rxjs";
+import { Observable, Subject } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { Topic } from "src/app/modeles/Topic";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -45,14 +45,22 @@ export class serviceTopic {
                         });
     }
 
-    getTopic(id:number):Topic{
-        this.httpClient.get<Topic> (this.apiTopic+`/${id}`)
-                       .subscribe(data =>{return data;
-                    },
-                        error => {
-                            this.snackBar.open("Echec de la récupération du sujet'!");
-                        });
-        return this.activeTopic;
+    getTopic(id:number):Observable<Topic>{
+        return new Observable<Topic>(observer => {
+            this.httpClient.get<Topic> (this.apiTopic+`/${id}`, {observe: "body"})
+                .subscribe(topicfromapi =>{ {
+                    this.activeTopic = topicfromapi;
+                    this.emitActiveTopic();
+                   
+                    observer.next(topicfromapi);
+                }
+             },
+                error => {
+                 this.snackBar.open("Echec de la récupération du sujet!","Ok",{duration: 4000});
+                });
+            
+        });
+      
     }
 
     createTopic(title:string,date:Date,content:Message){

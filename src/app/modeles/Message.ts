@@ -10,6 +10,7 @@ export class Message {
     date:Date;
     topic:Topic;
     user : User;
+    author!:User;
 
     constructor (id:number,author_id:number,content:string,date:Date,topic:Topic,user:User) {
         this.id=id;
@@ -18,5 +19,6 @@ export class Message {
         this.date=date;
         this.topic=topic;
         this.user=user;
+        this.author=user;
     }
 }

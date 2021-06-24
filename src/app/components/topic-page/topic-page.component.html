@@ -1,32 +1,35 @@
+<div *ngIf="activeTopic">
 
 
-    <h1 class = "topicline topic">{{activeTopic.title}}
-       
-    </h1> 
-    <h6 class = "topicline topic">{{activeTopic.date}}{{activeTopic.user}}</h6>
-    
-    <button (click)="refresh()" id ="actualisation" >actualiser</button> 
+    <h1 class="topicline topic">{{activeTopic.title}}
 
-    
-    <div class = "inputlarge" *ngfor="let message of activeTopic.messages">
-        {{message.author}} 
+    </h1>
+    <h6 class="topicline topic">{{activeTopic.date}}{{activeTopic.user}}</h6>
+
+    <button (click)="refresh()" id="actualisation">actualiser</button>
+
+
+    <div class="inputlarge" *ngFor="let message of activeTopic.messages">
+        {{message.author.username}}
 
         <div>
             {{message.content}}
-            
 
-    
+
+
 
 
         </div>
     </div>
-   
-    <form (ngSubmit)="onSubmit()" [formGroup]= "myform"> 
-        <input type ="text">
-        
-        
-        
-        <input type="submit" name ="content" formControlName ="content">
-            
-    
+
+
+    <form (ngSubmit)="onSubmit()" [formGroup]="myform">
+        <input type="text">
+
+
+
+        <input type="submit" name="content" formControlName="content">
+
+
     </form>
+</div>

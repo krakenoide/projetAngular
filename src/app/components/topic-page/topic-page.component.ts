@@ -26,10 +26,6 @@ export class TopicpageComponent implements OnInit {
    
    }
   
-      
-
-      
-  
   ngOnInit(): void {
     // creer une propriété topic 
     // souscrire au topic subject et dans le subscribe  assigner le retour du subscribe a la propriété topic
@@ -37,23 +33,9 @@ export class TopicpageComponent implements OnInit {
     
     const topic_id = this.route.snapshot.params['id'];
 
-    this.topicsubscription=this.services.topicSubject.subscribe((currentTopic :Topic) => {
+    this.services.getTopic(topic_id).subscribe((currentTopic :Topic) => {
       this.activeTopic= currentTopic;
-    })
-
-
-    
-
-
-
-
-    this.services.emitActiveTopic();
-
-    
-
-    
-
-
+    });
 
     this.myform=this.formbuilder.group({
       content:['',[Validators.required,Validators.maxLength(3000),Validators.minLength(5)]]
@@ -63,11 +45,6 @@ export class TopicpageComponent implements OnInit {
     this.myrefreshbutton=this.formbuilder.group({});
 
   }
-
- 
-  
-
- 
 
 onSubmit(): void{
   console.log(this.myform.value);

@@ -1,3 +1,4 @@
+import { Message } from "./Message";
 import { User } from "./User";
 
 export class Topic {
@@ -6,6 +7,7 @@ export class Topic {
     date:Date;
     author_id:number;
     user:User;
+    messages !: Message[];
 
     constructor (id:number,title:string,date:Date,author_id:number,user:User) {
         this.id=id;
@@ -13,6 +15,7 @@ export class Topic {
         this.date=date;
         this.author_id=author_id;
         this.user=user;
+        
     }
 
 }

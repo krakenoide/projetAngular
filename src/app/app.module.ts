@@ -20,29 +20,29 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    CreationPageComponent,
-    HomePageComponent,
-    HeaderComponent,
-    LoginPageComponent,
-    PageModifComponent 
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    MatButtonModule,
-    MatInputModule,
-    MatCheckboxModule,
-    MatAutocompleteModule,
-    MatSnackBarModule
-  ],
-  providers: [serviceUser,
-              serviceMessage,
-              serviceTopic],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		CreationPageComponent,
+		HomePageComponent,
+		HeaderComponent,
+		LoginPageComponent,
+		PageModifComponent 
+	],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		BrowserAnimationsModule,
+		ReactiveFormsModule,
+		HttpClientModule,
+		MatButtonModule,
+		MatInputModule,
+		MatCheckboxModule,
+		MatAutocompleteModule,
+		MatSnackBarModule
+	],
+	providers: [serviceUser,
+				serviceMessage,
+				serviceTopic],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }

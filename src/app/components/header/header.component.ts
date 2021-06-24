@@ -19,9 +19,6 @@ export class HeaderComponent implements OnInit {
   constructor( private services:serviceUser,private router:Router) { 
     this.userSubscription = this.services.userSubject.subscribe((connectedUser:User) => {
     this.user=connectedUser;
-    if (localStorage.getItem("storedUser")) {
-      services.setConnectedUser(JSON.parse(localStorage.getItem("storedUser")!));
-    }
     })
     
     this.services.emitConnectedUser();
@@ -29,6 +26,9 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.user);
+    if (localStorage.getItem("storedUser")) {
+      this.services.setConnectedUser(JSON.parse(localStorage.getItem("storedUser")!));
+    }
   }
 
   clickAccueil():void {

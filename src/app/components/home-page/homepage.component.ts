@@ -1,8 +1,9 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, NgForm, Validators, FormBuilder, FormControl } from '@angular/forms';
-import {Observable} from 'rxjs';
+import {Observable,Subscription} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { User } from 'src/app/modeles/User';
+import {Topic } from 'src/app/modeles/Topic';
 import { serviceUser } from '../../Services/serviceUser';
 import { serviceTopic } from '../../Services/serviceTopic';
 
@@ -15,11 +16,15 @@ export class HomePageComponent implements OnInit {
   connectedUser!: User;
   myForm!: FormGroup;
   myControl = new FormControl();
-  topicList: string[] = ['Topic1', 'Topic2', 'Topic3'];
+  topicList!: Topic [];
   filteredTopics!: Observable<string[]>;
   booleanlist:boolean[]=[];
+  topicSubscription!: Subscription;
 
   constructor(private formBuilder: FormBuilder,private servicesUser:serviceUser,private servicesTopic:serviceTopic) { 
+    this.topicSubscription = this.servicesTopic.topicSubject.subscribe((topicServiceList:Topic[]) => {
+      this.topicList=topicServiceList;
+    });
   }
 
   ngOnInit(): void {   
@@ -37,7 +42,11 @@ export class HomePageComponent implements OnInit {
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-    return this.topicList.filter(option => option.toLowerCase().indexOf(filterValue) === 0);    
+    let TitleTab: string[];
+    this.topicList.forEach(topic => {
+      TitleTab.push(topic.title);
+    });
+    return TitleTab.filter(option => option.toLowerCase().indexOf(filterValue) === 0);    
   }
   
 
@@ -77,9 +86,9 @@ export class HomePageComponent implements OnInit {
   }
   
    mousecheck(){
-   for (let i=0;i<this.topicList.length;i++){
-      this.booleanlist.push(false);
-   }
-   }
+    for (let i=0;i<this.topicList.length;i++){
+        this.booleanlist.push(false);
+      }
+  }
   
 }

@@ -14,7 +14,7 @@ import { serviceUser } from '../Services/serviceUser';
 export class serviceTopic {
     connectedUser!:User;
     activeTopic!: Topic;
-    topics!: Topic[];
+    topicServiceList!: Topic[];
     apiTopic = "http://localhost:8080/api/topic"
     topicSubject = new Subject<Topic>();
     topicSubscription!: Subscription;
@@ -36,7 +36,7 @@ export class serviceTopic {
 
     getAllTopic() {
         this.httpClient.get<Topic[]> (this.apiTopic)
-                       .subscribe(data =>{this.topics=data;
+                       .subscribe(data =>{this.topicServiceList=data;
                     },
                         error => {
                             this.snackBar.open("Echec de la récupération des sujets!","Ok",{duration: 4000});

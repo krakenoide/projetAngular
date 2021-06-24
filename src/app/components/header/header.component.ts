@@ -16,18 +16,18 @@ export class HeaderComponent implements OnInit {
   userSubscription!: Subscription;
 
 
-  constructor( private services:serviceUser,private router:Router) { 
-    this.userSubscription = this.services.userSubject.subscribe((connectedUser:User) => {
+  constructor( private servicesUser:serviceUser,private router:Router) { 
+    this.userSubscription = this.servicesUser.userSubject.subscribe((connectedUser:User) => {
     this.user=connectedUser;
     })
     
-    this.services.emitConnectedUser();
+    this.servicesUser.emitConnectedUser();
   }
 
   ngOnInit(): void {
     console.log(this.user);
     if (localStorage.getItem("storedUser")) {
-      this.services.setConnectedUser(JSON.parse(localStorage.getItem("storedUser")!));
+      this.servicesUser.setConnectedUser(JSON.parse(localStorage.getItem("storedUser")!));
     }
   }
 
@@ -49,7 +49,7 @@ export class HeaderComponent implements OnInit {
     if (localStorage.getItem("storedUser")) {
       localStorage.removeItem("storedUser");    
     }
-    this.services.setConnectedUser(new User(0,"","",0));
+    this.servicesUser.setConnectedUser(new User(0,"","",0));
     this.router.navigate(['']);
   }
 }

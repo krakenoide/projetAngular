@@ -27,7 +27,7 @@ export class serviceMessage {
         this.httpClient.get<Message[]> (this.apiMessage)
                        .subscribe(data =>{this.messages=data},
                         error => {
-                            this.snackBar.open("Echec de la srecupération de tous les messages!");
+                            this.snackBar.open("Echec de la recupération de tous les messages!",);
 
 
                         });

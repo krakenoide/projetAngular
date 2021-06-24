@@ -1,28 +1,26 @@
 
 
-    <h1 class = "topicline topic">titre du topic
+    <h1 class = "topicline topic">{{activeTopic.title}}
        
     </h1> 
-    <h6 class = "topicline topic">date de creation et identitenfiant de l'user</h6>
-    <form (ngSubmit)="refresh()" [formGroup]= "myrefreshbutton">
-        <input type = "submit" id ="actualisation" value="actualiser">      
-    </form>
-    <div class = "inputlarge">
-        auteur et date du message
+    <h6 class = "topicline topic">{{activeTopic.date}}{{activeTopic.user}}</h6>
+    
+    <button (click)="refresh()" id ="actualisation" >actualiser</button> 
+
+    
+    <div class = "inputlarge" *ngfor="let message of activeTopic.messages">
+        {{message.author}} 
+
         <div>
-            contenu du message 1
+            {{message.content}}
+            
+
+    
 
 
         </div>
     </div>
-    <div class = "inputlarge">
-        auteur et date du message
-        <div>
-            contenu du message 2
-
-
-        </div>
-    </div>
+   
     <form (ngSubmit)="onSubmit()" [formGroup]= "myform"> 
         <input type ="text">
         

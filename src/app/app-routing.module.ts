@@ -13,7 +13,7 @@ const routes: Routes = [
   {path: '', component:HomePageComponent},
   {path: 'creationpage', component:CreationPageComponent},
   {path: 'header', component:HeaderComponent},
-  {path: 'topic' , component:TopicpageComponent}
+  {path: 'topic/:id' , component:TopicpageComponent}
 ];
 
 @NgModule({

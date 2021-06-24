@@ -3,7 +3,7 @@ import { FormGroup, NgForm, Validators, FormBuilder, FormControl } from '@angula
 import {Observable,Subscription} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { User } from 'src/app/modeles/User';
-import {Topic } from 'src/app/modeles/Topic';
+import { Topic } from 'src/app/modeles/Topic';
 import { serviceUser } from '../../Services/serviceUser';
 import { serviceTopic } from '../../Services/serviceTopic';
 
@@ -16,14 +16,15 @@ export class HomePageComponent implements OnInit {
   connectedUser!: User;
   myForm!: FormGroup;
   myControl = new FormControl();
-  topicList!: Topic [];
+  topicList!: Topic[];
   filteredTopics!: Observable<string[]>;
   booleanlist:boolean[]=[];
   topicSubscription!: Subscription;
 
   constructor(private formBuilder: FormBuilder,private servicesUser:serviceUser,private servicesTopic:serviceTopic) { 
-    this.topicSubscription = this.servicesTopic.topicSubject.subscribe((topicServiceList:Topic[]) => {
-      this.topicList=topicServiceList;
+    this.topicSubscription = this.servicesTopic.topicSubject.subscribe((topicServiceList:any) => {
+      this.topicList=<Topic[]>topicServiceList;
+      console.log(this.topicList);
     });
   }
 
@@ -33,20 +34,25 @@ export class HomePageComponent implements OnInit {
       message: ['',[Validators.required,Validators.minLength(5),Validators.maxLength(3000)]]
     });  
 
+    console.log(this.servicesTopic.topicServiceList);
+    console.log(this.topicList);
     this.filteredTopics = this.myControl.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value))
     );
     this.mousecheck();
+    
+    
   }
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-    let TitleTab: string[];
+    let TitleTab: string[]=[];
     this.topicList.forEach(topic => {
       TitleTab.push(topic.title);
     });
-    return TitleTab.filter(option => option.toLowerCase().indexOf(filterValue) === 0);    
+
+    return TitleTab.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
   }
   
 
@@ -86,9 +92,11 @@ export class HomePageComponent implements OnInit {
   }
   
    mousecheck(){
-    for (let i=0;i<this.topicList.length;i++){
+    if(this.topicList){
+      for (let i=0;i<this.topicList.length;i++){
         this.booleanlist.push(false);
       }
+    }
   }
   
 }

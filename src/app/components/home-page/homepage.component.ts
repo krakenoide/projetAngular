@@ -123,7 +123,7 @@ export class HomePageComponent implements OnInit {
 
   modify (topic:Topic) {
     if (this.connectedUser===topic.author || this.connectedUser.admin===1) {
-      this.servicesTopic.modifTopic("placeholder",topic.id);
+      this.servicesTopic.modifTopic("placeholder",topic.id);    
     } else { this.snackBar.open("Droits insuffisant pour modifier ce sujet!","Ok",{duration:4000})}
   }
 }

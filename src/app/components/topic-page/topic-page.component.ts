@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { Subject } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 
+
 @Component({
   selector: 'app-topic-page',
   templateUrl: './topic-page.component.html',
@@ -17,24 +18,24 @@ export class TopicpageComponent implements OnInit {
   myrefreshbutton! : FormGroup;
   activeTopic !: Topic;
   topicsubscription !: Subscription;
-  route !: ActivatedRoute  ;
   activeid !: number;
 
 
-  constructor(private formbuilder : FormBuilder, private services:serviceTopic) {
+
+  constructor(private formbuilder : FormBuilder, private services:serviceTopic, private route : ActivatedRoute) {
    
    }
-   getRouteparameter():number{
-     return this.route.snapshot.params['id'];
+  
+      
 
       
-  }
+  
   ngOnInit(): void {
     // creer une propriété topic 
     // souscrire au topic subject et dans le subscribe  assigner le retour du subscribe a la propriété topic
     // faire un appel de emitactivetopic
     
-    this.getRouteparameter();
+    const topic_id = this.route.snapshot.params['id'];
 
     this.topicsubscription=this.services.topicSubject.subscribe((currentTopic :Topic) => {
       this.activeTopic= currentTopic;

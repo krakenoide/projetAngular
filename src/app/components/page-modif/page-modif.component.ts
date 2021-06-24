@@ -23,16 +23,16 @@ export class PageModifComponent implements OnInit {
   }
   ngOnInit(): void {
     this.formModif=this.formBuilder.group({
-      nusername:["",[Validators.required,Validators.maxLength(50)]],
+      nusername:["",[Validators.maxLength(50)]],
       oldpassword:["",[Validators.required]],
-      npassword:["",[Validators.required]],
-      npasswordbis:["",[Validators.required]]
+      npassword:["",],
+      npasswordbis:["",]
     })
   }
 
   onSubmit(): void {
       this.services.modifUser(this.formModif.value.nusername,this.formModif.value.oldpassword,this.formModif.value.npassword,this.formModif.value.npasswordbis);
-  }
+    }
 
   getErrors():string|void {
 

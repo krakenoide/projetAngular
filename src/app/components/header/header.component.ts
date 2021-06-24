@@ -17,7 +17,8 @@ export class HeaderComponent implements OnInit {
 
 
   constructor( private services:serviceUser,private router:Router) { 
-    this.userSubscription = this.services.userSubject.subscribe((connectedUser:User) => {this.user=connectedUser;
+    this.userSubscription = this.services.userSubject.subscribe((connectedUser:User) => {
+    this.user=connectedUser;
     if (localStorage.getItem("storedUser")) {
       services.setConnectedUser(JSON.parse(localStorage.getItem("storedUser")!));
     }

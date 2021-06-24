@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { User } from 'src/app/modeles/User';
 import { serviceUser } from '../../Services/serviceUser';
+import { serviceTopic } from '../../Services/serviceTopic';
 
 @Component({
   selector: 'app-home-page',
@@ -14,11 +15,11 @@ export class HomePageComponent implements OnInit {
   connectedUser!: User;
   myForm!: FormGroup;
   myControl = new FormControl();
-  options: string[] = ['Topic1', 'Topic2', 'Topic3'];
-  filteredOptions!: Observable<string[]>;
+  topicList: string[] = ['Topic1', 'Topic2', 'Topic3'];
+  filteredTopics!: Observable<string[]>;
   booleanlist:boolean[]=[];
 
-  constructor(private formBuilder: FormBuilder,private services:serviceUser) { 
+  constructor(private formBuilder: FormBuilder,private servicesUser:serviceUser,private servicesTopic:serviceTopic) { 
   }
 
   ngOnInit(): void {   
@@ -27,7 +28,7 @@ export class HomePageComponent implements OnInit {
       message: ['',[Validators.required,Validators.minLength(5),Validators.maxLength(3000)]]
     });  
 
-    this.filteredOptions = this.myControl.valueChanges.pipe(
+    this.filteredTopics = this.myControl.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value))
     );
@@ -36,7 +37,7 @@ export class HomePageComponent implements OnInit {
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-    return this.options.filter(option => option.toLowerCase().indexOf(filterValue) === 0);    
+    return this.topicList.filter(option => option.toLowerCase().indexOf(filterValue) === 0);    
   }
   
 
@@ -76,7 +77,7 @@ export class HomePageComponent implements OnInit {
   }
   
    mousecheck(){
-   for (let i=0;i<this.options.length;i++){
+   for (let i=0;i<this.topicList.length;i++){
       this.booleanlist.push(false);
    }
    }

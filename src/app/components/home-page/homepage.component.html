@@ -31,5 +31,5 @@
     <span class="details">{{topic.author.username}} {{topic.date}}</span></a>
   <a class="topic" (mouseenter) ="mouseEnterlist(index)" *ngIf="!booleanlist[index]">{{topic.title}} </a>
     <button type="submit" class="btn" mat-raised-button color="primary">Modifier</button>
-    <button type="submit" class="btn" mat-raised-button color="warn">Supprimer</button>
+    <button type="submit" class="btn" mat-raised-button color="warn" (click)="delete(topic)">Supprimer</button>
   </div>

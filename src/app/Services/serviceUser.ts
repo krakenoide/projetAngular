@@ -2,8 +2,7 @@ import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { User } from "src/app/modeles/User";
-import { ActivatedRoute, Router } from "@angular/router";
-import { HeaderComponent } from "../components/header/header.component";
+import { Router } from "@angular/router";
 import { MatSnackBar } from "@angular/material/snack-bar";
 
 
@@ -20,6 +19,7 @@ export class serviceUser {
         if(this.connectedUser==null){
             this.connectedUser = new User(0,"","",0);
         }
+        this.emitConnectedUser();
     }
     
     setConnectedUser(cuser:User):void {

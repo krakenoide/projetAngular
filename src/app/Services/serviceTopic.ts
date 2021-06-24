@@ -35,6 +35,8 @@ export class serviceTopic {
     deleteTopic(id:number){
         this.httpClient.delete(this.apiTopic+`/${id}`)
                        .subscribe(data =>{this.snackBar.open("Sujet supprimé!","Ok",{duration: 4000});
+                       this.getAllTopic();
+                       this.redirectToHomePage();
                     },
                         error => {
                             this.snackBar.open("Echec de la supression!","Ok",{duration: 4000});
@@ -67,17 +69,20 @@ export class serviceTopic {
     createTopic(title:string,date:Date,content:Message){
         this.httpClient.post<Topic> (this.apiTopic, {title:title,user:this.connectedUser,date:date,content:content})
                        .subscribe(data =>{this.activeTopic=data;  
-                        this.snackBar.open("Sujet créé!");  
+                        this.snackBar.open("Sujet créé!");
+                        this.redirectToHomePage();  
                     },
                        error => {
                             this.snackBar.open("Echec de la création du sujet!","Ok",{duration: 4000});
                        });
     }
 
-    modifTopic(ntitle:string){
-        this.httpClient.patch<Topic> (this.apiTopic+`/${this.activeTopic.id}`, {title:ntitle})
+    modifTopic(ntitle:string,id:number){
+        this.httpClient.patch<Topic> (this.apiTopic+`/${id}`, {title:ntitle})
                        .subscribe(data =>{this.activeTopic=data; 
                         this.snackBar.open("Titre du sujet modifié!","Ok",{duration: 4000});
+                        this.getAllTopic();
+                        this.redirectToHomePage();
                     },
                        error => {
                             this.snackBar.open("Echec de la modification!","Ok",{duration: 4000});

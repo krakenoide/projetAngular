@@ -28,7 +28,7 @@
 
   <div class="topicline" *ngFor="let option of filteredOptions  | async;let index=index">
   <h2 class="topic" (mouseleave) ="mouseLeavelist(index)" *ngIf="booleanlist[index]">{{option}} User1 Date1</h2>
-  <h2 class="topic" (mouseenter) ="mouseEnterlist(index)" *ngIf="!booleanlist[index]">{{option}} </h2>
+  <a class="topic" (mouseenter) ="mouseEnterlist(index)" *ngIf="!booleanlist[index]" (click)=>{{option}} <a>
     <button type="submit" class="btn" mat-raised-button color="primary">Modifier</button>
     <button type="submit" class="btn" mat-raised-button color="warn">Supprimer</button>
   </div>

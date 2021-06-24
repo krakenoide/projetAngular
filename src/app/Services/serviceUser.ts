@@ -94,11 +94,6 @@ export class serviceUser {
     }
 
     modifUser(nusername:string,oldpassword:string,npassword:string,npasswordbis:string){
-<<<<<<< HEAD
-        this.httpClient.patch<User> (this.apiUser+`/${this.connectedUser.id}`, {username:nusername,oldPassword:oldpassword,password:npassword,passwordConfirm:npasswordbis})
-                       .subscribe(data =>{this.connectedUser=data;
-                        this.emitConnectedUser(); 
-=======
         if(nusername==""){
             nusername=this.connectedUser.username;
         }
@@ -109,7 +104,6 @@ export class serviceUser {
         this.httpClient.patch<User> (this.apiUser+`/${this.connectedUser.id}`, {username:nusername,password:npassword,passwordConfirm:npasswordbis,oldPassword:oldpassword})
                        .subscribe(data =>{
                         this.setConnectedUser(data);
->>>>>>> ae44d27a62a9e617b5cf088972d6c565067acfbd
                         if (localStorage.getItem("storedUser")) {
                             localStorage.setItem("storedUser",JSON.stringify(this.connectedUser));    
                         }

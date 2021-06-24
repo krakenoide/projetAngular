@@ -80,5 +80,9 @@ export class HomePageComponent implements OnInit {
       this.booleanlist.push(false);
    }
    }
+
+   topicSelect(id:number) {
+      
+   }
   
 }

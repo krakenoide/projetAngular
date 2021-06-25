@@ -63,7 +63,6 @@ export class HomePageComponent implements OnInit {
     this.topicList.forEach(topic => {
       TitleTab.push(topic);
     });
-
     return TitleTab.filter(topic => topic.title.toLowerCase().indexOf(filterValue) === 0);
   }
   

@@ -1,37 +1,46 @@
-<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-	<mat-form-field class="inputsmall">
-		<mat-label>Titre</mat-label>
-		<input matInput formControlName="title">
-	</mat-form-field>
+<form [formGroup]="myForm">
+<mat-form-field class="example-full-width inputsmall">
+    <mat-label>Titre</mat-label>
+    <input matInput formControlName="title">
+  </mat-form-field>
 
 	<mat-form-field class="inputlarge">
 		<mat-label>Message</mat-label>
 		<textarea matInput formControlName="message"></textarea>
 	</mat-form-field>
 
-	<button type="submit" class="button" mat-raised-button color="primary">Ajouter un nouveau sujet</button>
-</form>
+  <button type="submit" class="button" mat-raised-button color="primary" (click)="ajout()">Ajouter un nouveau sujet</button>
+
 
   <mat-form-field class="inputsmall">
-	<mat-label>Filtrer par titre ou par auteur</mat-label>
-	<input type="text"
-		aria-label="Number"
-		matInput
-		[formControl]="myControl"
-		[matAutocomplete]="auto">
-	<mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-		<mat-option *ngFor="let topic of filteredTopics | async" [value]="topic.title">
-			{{topic.title}}
-		</mat-option>
-	</mat-autocomplete>
+    <mat-label>Filtrer par titre ou par auteur</mat-label>
+    <input type="text"
+           aria-label="Number"
+           matInput
+           [formControl]="myControl"
+           [matAutocomplete]="auto">
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      <mat-option *ngFor="let topic of filteredTopics | async" [value]="topic.title">
+        {{topic.title}}
+      </mat-option>
+    </mat-autocomplete>
   </mat-form-field>
 
-<div class="topicline" *ngFor="let topic of filteredTopics  | async;let index=index">
-	<a class="topic" (mouseleave) ="mouseLeavelist(index)" *ngIf="booleanlist[index]" (click)="goToTopic(topic.id)">
-		{{topic.title}} 
-		<span class="details">{{topic.author.username}} {{topic.date  | date:'dd/MM/yyyy'}}</span>
-	</a>
-	<a class="topic" (mouseenter) ="mouseEnterlist(index)" *ngIf="!booleanlist[index]">{{topic.title}} </a>
-	<button type="submit" class="btn" mat-raised-button color="primary">Modifier</button>
-	<button type="submit" class="btn" mat-raised-button color="warn" (click)="delete(topic)">Supprimer</button>
-</div>
+  <div class="topicline" *ngFor="let topic of filteredTopics  | async;let index=index">
+  <a class="topic" (mouseleave) ="mouseLeavelist(index)" *ngIf="booleanlistisover[index]&&!booleanlistisclicked[index]" (click)="goToTopic(topic.id)">{{topic.title}} 
+    <span class="details">{{topic.author.username}} {{topic.date | date:"dd/MM/yy"}}</span></a>
+  <a class="topic" (mouseenter) ="mouseEnterlist(index)" *ngIf="!booleanlistisover[index]&&!booleanlistisclicked[index]">{{topic.title}} </a>
+
+  <span *ngIf="booleanlistisclicked[index]">
+    <mat-form-field class="inputsmall">
+        <mat-label>{{topic.title}}</mat-label>
+        <input matInput formControlName="modifytitle">
+      </mat-form-field>
+      <button class="btn" mat-raised-button color="primary" (click)="modifyvalidation(topic)">Valider</button>
+      <button class="btn" mat-raised-button color="warn" (click)="cancel(topic)">Annuler</button>
+  </span>
+
+    <button type="submit" class="btn" mat-raised-button color="primary" (click)="modify(topic)" *ngIf="!booleanlistisclicked[index]">Modifier</button>
+    <button type="submit" class="btn" mat-raised-button color="warn" (click)="delete(topic)" *ngIf="!booleanlistisclicked[index]">Supprimer</button>
+  </div>
+</form>

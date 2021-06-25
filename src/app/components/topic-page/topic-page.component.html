@@ -1,32 +1,28 @@
 <div *ngIf="activeTopic">
 
-    <h1 class="topicline topic">{{activeTopic.title}}
+    <h1 class="topicline topic">{{activeTopic.title}}</h1>
 
-    </h1>
-    <h6 class="topicline topic">{{activeTopic.date}}{{activeTopic.author.username}}</h6>
-
-    <button (click)="refresh()" id="actualisation">actualiser</button>
-
-    <div class="inputlarge" *ngFor="let message of activeTopic.messages">
-        {{message.author.username}}
-
-        <div>
-            {{message.content}}
-
-
-
-
-
-        </div>
+    <div class="topicline">
+    <h4 class="topicline topic" style="color: black;">Sujet ajouté le {{activeTopic.date | date:"dd/MM/yy"}} par {{activeTopic.author.username}}</h4>
+    <button class="btn" (click)="refresh()" mat-raised-button color="primary">Actualiser</button>
     </div>
+
+    <span *ngFor="let message of activeTopic.messages">
+        <div *ngIf="connectedUser.username===message.author.username" class="messagerieuser">
+        {{message.author.username}} : <span style="color: black;">{{message.content}}</span>
+        </div>
+        <div *ngIf="!(connectedUser.username===message.author.username)" class="messagerieother">
+            {{message.author.username}} : <span style="color: black;">{{message.content}}</span>
+        </div>
+    </span>
 
 
     <form (ngSubmit)="onSubmit()" [formGroup]="myform">
-        <input type="text"  formControlName="content" class="example-full-width inputsmall">
+        <mat-form-field class="example-full-width inputlarge">
+            <mat-label>Message</mat-label>
+            <textarea matInput formControlName="content"></textarea>
+        </mat-form-field>
 
-
-
-        <input type="submit"  class="button" value = "répondre">
-
+        <button type="submit" class="button" mat-raised-button color="primary">Répondre</button>
     </form>
 </div>

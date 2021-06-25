@@ -71,19 +71,13 @@ export class serviceMessage {
     
                     }
 
-      modifMessage(ncontent:string){
-         this.httpClient.patch<Message> (this.apiMessage+`/${this.activeMessage.id}`, {content:ncontent})
-             .subscribe(data =>{this.activeMessage=data; 
-            
-            },
-         error => {
-            this.snackBar.open("Echec de la modification du message!","Ok",{duration:4000});
-
-                                          
-                 });
-         }
-
-
+    modifMessage(ncontent:string){
+        this.httpClient.patch<Message> (this.apiMessage+`/${this.activeMessage.id}`, {content:ncontent})
+                .subscribe(data =>{this.activeMessage=data;},
+                error => {
+                    this.snackBar.open("Echec de la modification du message!","Ok",{duration:4000});                                            
+                });
+    }
 
     deleteUser(id:number){
         this.httpClient.delete(this.apiMessage+`/${id}`)

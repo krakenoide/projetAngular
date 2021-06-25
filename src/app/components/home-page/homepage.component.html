@@ -4,7 +4,7 @@
     <input matInput formControlName="title">
   </mat-form-field>
 
-	<mat-form-field class="example-full-width inputlarge">
+	<mat-form-field class="inputlarge">
 		<mat-label>Message</mat-label>
 		<textarea matInput formControlName="message"></textarea>
 	</mat-form-field>
@@ -12,7 +12,7 @@
   <button type="submit" class="button" mat-raised-button color="primary" (click)="ajout()">Ajouter un nouveau sujet</button>
 
 
-  <mat-form-field class="example-full-width inputsmall">
+  <mat-form-field class="inputsmall">
     <mat-label>Filtrer par titre ou par auteur</mat-label>
     <input type="text"
            aria-label="Number"
@@ -28,11 +28,11 @@
 
   <div class="topicline" *ngFor="let topic of filteredTopics  | async;let index=index">
   <a class="topic" (mouseleave) ="mouseLeavelist(index)" *ngIf="booleanlistisover[index]&&!booleanlistisclicked[index]" (click)="goToTopic(topic.id)">{{topic.title}} 
-    <span class="details">{{topic.author.username}} {{topic.date | date:"dd/MM/yy"}}</span></a>
+    <span class="details">Créé par {{topic.author.username}} le {{topic.date | date:"dd/MM/yy"}}</span></a>
   <a class="topic" (mouseenter) ="mouseEnterlist(index)" *ngIf="!booleanlistisover[index]&&!booleanlistisclicked[index]">{{topic.title}} </a>
 
   <span *ngIf="booleanlistisclicked[index]">
-    <mat-form-field class="example-full-width inputsmall">
+    <mat-form-field class="inputsmall">
         <mat-label>{{topic.title}}</mat-label>
         <input matInput formControlName="modifytitle">
       </mat-form-field>

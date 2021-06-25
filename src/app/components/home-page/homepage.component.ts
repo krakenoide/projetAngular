@@ -78,7 +78,7 @@ export class HomePageComponent implements OnInit {
     if (this.myForm.controls.title.hasError('minLength')){
       return "Le titre doit comporter au minimum 5 caractères";
     }
-    if (this.myForm.controls.username.hasError('maxLength')){
+    if (this.myForm.controls.title.hasError('maxLength')){
       return "Le titre doit comporter au maximum 100 caractères";
     }
   }

@@ -5,7 +5,6 @@ import { serviceUser } from '../../Services/serviceUser';
 import { serviceTopic } from '../../Services/serviceTopic';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
-import { Topic } from 'src/app/modeles/Topic';
 
 @Component({
  	selector: 'app-header',

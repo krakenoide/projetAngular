@@ -7,9 +7,14 @@
     <button class="btn" (click)="refresh()" mat-raised-button color="primary">Actualiser</button>
     </div>
 
-    <div class="inputlarge" *ngFor="let message of activeTopic.messages">
+    <span *ngFor="let message of activeTopic.messages">
+        <div *ngIf="connectedUser.username===message.author.username" class="messagerieuser">
         {{message.author.username}} : <span style="color: black;">{{message.content}}</span>
-    </div>
+        </div>
+        <div *ngIf="!(connectedUser.username===message.author.username)" class="messagerieother">
+            {{message.author.username}} : <span style="color: black;">{{message.content}}</span>
+        </div>
+    </span>
 
 
     <form (ngSubmit)="onSubmit()" [formGroup]="myform">

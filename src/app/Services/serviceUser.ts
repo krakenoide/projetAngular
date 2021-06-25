@@ -122,7 +122,6 @@ export class serviceUser {
 	}
 
 	isUsernameAlreadyInDB(currentInput:String) : boolean {
-		console.log(this.users);
 		let isCurrentlyInDB:boolean = false;
 		this.users.forEach(element => {
 			if(element.username==currentInput){

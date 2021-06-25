@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder,Validators } from '@angular/forms';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { FormGroup, FormBuilder,Validators, AbstractControl, ValidatorFn, ValidationErrors } from '@angular/forms';
 import { serviceUser } from '../../Services/serviceUser';
 
 @Component({
@@ -7,20 +7,23 @@ import { serviceUser } from '../../Services/serviceUser';
 	templateUrl: './login-page.component.html'
 })
 
-export class LoginPageComponent implements OnInit{
+export class LoginPageComponent implements OnInit {
 	loginForm!: FormGroup;
 
 	constructor(private formBuilder: FormBuilder,private servicesUser:serviceUser) { 
 	
 	}
 
+
 	ngOnInit(): void {
 		this.loginForm = this.formBuilder.group({
-			username: ['',[Validators.required,Validators.minLength(3),Validators.maxLength(50)]],
+			username: ['',[Validators.required,Validators.minLength(3),Validators.maxLength(50),notInDB]],
 			password: ['',[Validators.required,Validators.minLength(3),Validators.maxLength(50)]],
 			rememberme: [false]
 		});
 	} 
+
+	
 
 	onSubmit(): void {
 		this.servicesUser.login(this.loginForm.value.username,this.loginForm.value.password,
@@ -39,6 +42,9 @@ export class LoginPageComponent implements OnInit{
 		if (this.loginForm.controls.username.hasError('maxLength')){
 			return "Le nom d'utilisateur doit comporter au maximum 50 caractères";
 		}
+		if (this.loginForm.controls.username.hasError('notInDB')){
+			return "Le nom d'utilisateur est déjà utilisé par un autre utilisateur";
+		}
 	}
 	
 	getPasswordErrors(): string|void{
@@ -55,6 +61,10 @@ export class LoginPageComponent implements OnInit{
 
 }
 
-
-  
-
+export function notInDB(currentUsername: String,servicesUser:serviceUser): ValidatorFn{
+	console.log("Stop! Controle de Police !");
+	return (control:AbstractControl) : ValidationErrors | null => {
+		const inDB = servicesUser.isUsernameAlreadyInDB(control.value);
+		return inDB  ? {forbiddenName: {value: control.value}} : null;
+	};
+}

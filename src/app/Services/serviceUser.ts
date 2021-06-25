@@ -19,6 +19,8 @@ export class serviceUser {
 		if(this.connectedUser==null){
 			this.connectedUser = new User(0,"","",0);
 		}
+		this.users = [];
+		this.getAllUsers();
 		this.emitConnectedUser();
 	}
 	
@@ -119,8 +121,15 @@ export class serviceUser {
 		this.router.navigate(['']);
 	}
 
-	isUsernameAlreadyInDB() : void {
-		
+	isUsernameAlreadyInDB(currentInput:String) : boolean {
+		console.log(this.users)
+		let isCurrentlyInDB:boolean = false;
+		this.users.forEach(element => {
+			if(element.username==currentInput){
+				isCurrentlyInDB = true;
+			}
+		});
+		return isCurrentlyInDB;
 	}
 
 }

@@ -27,11 +27,8 @@ export class TopicpageComponent implements OnInit {
   
   }
   ngOnInit(): void {
-	// creer une propriété topic 
-	// souscrire au topic subject et dans le subscribe  assigner le retour du subscribe a la propriété topic
-	// faire un appel de emitactivetopic
 	
-   this.userSubscription = this.servicesuser.userSubject.subscribe((connectedUser:User) => {this.connectedUser=connectedUser;
+   	this.userSubscription = this.servicesuser.userSubject.subscribe((connectedUser:User) => {this.connectedUser=connectedUser;
 	})
 	this.servicesuser.emitConnectedUser();
 	this.topicSubscription = this.servicestopic.topicSubject.subscribe((activeTopic:Topic) => {this.activeTopic=activeTopic;
@@ -52,9 +49,7 @@ export class TopicpageComponent implements OnInit {
   }
 
 onSubmit(): void{
-  this.servicesmessage.createMessage(this.myform.value.content,25062021);
-  
-  
+	this.servicesmessage.createMessage(this.myform.value.content,25062021);  
 
 }
 

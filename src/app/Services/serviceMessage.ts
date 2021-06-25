@@ -65,7 +65,7 @@ export class serviceMessage {
     
                     }
 
-      modifMessage(ncontent:string){
+    modifMessage(ncontent:string){
         this.httpClient.patch<Message> (this.apiMessage+`/${this.activeMessage.id}`, {content:ncontent})
                 .subscribe(data =>{this.activeMessage=data;},
                 error => {

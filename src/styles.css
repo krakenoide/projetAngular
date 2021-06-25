@@ -69,10 +69,25 @@
     width: 100px;
 }
 
-
 .rememberme {
     margin-top: 20px;
     margin-bottom: 20px;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.messagerieuser {
+    margin-top: 10px;
+    border: solid 2px #160c9c;
+    width: 80%;
+    padding: 20px;
+    color: #1569CA;
+    background-color: #7da5d3;
+}
+
+.messagerieother {
+    margin-top: 10px;
+    border: solid 2px #9c0c0c;
+    width: 80%;
+    padding: 20px;
+    color: #ca1515;
+    background-color: #df8a8a;
+}

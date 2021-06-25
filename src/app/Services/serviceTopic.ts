@@ -63,7 +63,6 @@ export class serviceTopic {
 		this.httpClient.get<Topic> (this.apiTopic+`/${id}`)
 			.subscribe(topicfromapi =>{ {
 				this.activeTopic = topicfromapi;
-				console.log(this.activeTopic);
 				this.emitActiveTopic();
 			    this.router.navigate([`topic/${id}`]);
 				

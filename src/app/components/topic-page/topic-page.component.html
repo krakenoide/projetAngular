@@ -17,9 +17,11 @@
 
 
     <form (ngSubmit)="onSubmit()" [formGroup]="myform">
-        <input type="text">
+        <input type="text"  formControlName="content" class="example-full-width inputsmall">
 
-        <input type="submit" name="content" formControlName="content">
+
+
+        <input type="submit"  class="button" value = "répondre">
 
     </form>
 </div>

@@ -21,15 +21,21 @@ export class HomePageComponent implements OnInit {
   topicList: Topic[]=[];
   filteredTopics!: Observable<Topic[]>;
   booleanlist:boolean[]=[];
-  topicSubscription!: Subscription;
+  topicsSubscription!: Subscription;
   userSubscription!: Subscription;
-  activeTopic!: Observable<Topic>;
+  activeTopic!: Topic;
+  topicSubscription !: Subscription;
+
 
   constructor(private formBuilder: FormBuilder,private servicesUser:serviceUser,private servicesTopic:serviceTopic,private router:Router,private snackBar:MatSnackBar) { 
     this.userSubscription = this.servicesUser.userSubject.subscribe((connectedUser:User) => {this.connectedUser=connectedUser;
     })
     this.servicesUser.emitConnectedUser();
-    this.topicSubscription = this.servicesTopic.topicAllSubject.subscribe((topicServiceList:Topic[]) => {
+    this.topicSubscription = this.servicesTopic.topicSubject.subscribe((currenTopic:Topic) => {this.activeTopic=currenTopic;
+    })
+    this.servicesTopic.emitActiveTopic();
+    
+    this.topicsSubscription = this.servicesTopic.topicAllSubject.subscribe((topicServiceList:Topic[]) => {
       this.topicList=<Topic[]>topicServiceList;
       if (topicServiceList===undefined){
         this.topicList=[];
@@ -78,7 +84,7 @@ export class HomePageComponent implements OnInit {
     if (this.myForm.controls.title.hasError('minLength')){
       return "Le titre doit comporter au minimum 5 caractères";
     }
-    if (this.myForm.controls.username.hasError('maxLength')){
+    if (this.myForm.controls.title.hasError('maxLength')){
       return "Le titre doit comporter au maximum 100 caractères";
     }
   }
@@ -112,6 +118,8 @@ export class HomePageComponent implements OnInit {
   }
 
   goToTopic(id:number) {
+    this.servicesTopic.getTopic2(id);
+    console.log(this.activeTopic)
       this.router.navigate([`topic/${id}`]);
   }
 

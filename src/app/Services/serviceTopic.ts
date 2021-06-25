@@ -60,6 +60,7 @@ export class serviceTopic {
             this.httpClient.get<Topic> (this.apiTopic+`/${id}`, {observe: "body"})
                 .subscribe(topicfromapi =>{ {
                     this.activeTopic = topicfromapi;
+					console.log(this.activeTopic);
                     this.emitActiveTopic();
                    
                     observer.next(topicfromapi);
@@ -72,6 +73,25 @@ export class serviceTopic {
         });
       
     }
+
+	getTopic2(id : number) {
+		this.httpClient.get<Topic> (this.apiTopic+`/${id}`)
+			.subscribe(topicfromapi =>{ {
+				this.activeTopic = topicfromapi;
+				console.log(this.activeTopic);
+				this.emitActiveTopic();
+			   
+				
+			}
+		 },
+			error => {
+			 this.snackBar.open("Echec de la récupération du sujet!","Ok",{duration: 4000});
+			});
+		
+	};
+  
+
+
 
 	createTopic(title:string,date:Date,content:Message){
 		this.httpClient.post<Topic> (this.apiTopic, {title:title,user:this.connectedUser,date:date,content:content})

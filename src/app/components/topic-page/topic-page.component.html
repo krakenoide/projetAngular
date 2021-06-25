@@ -3,7 +3,7 @@
     <h1 class="topicline topic">{{activeTopic.title}}</h1>
 
     <div class="topicline">
-    <h4 class="topicline topic" style="color: black;">Topic ajouté le {{activeTopic.date | date:"dd/MM/yy"}} par {{activeTopic.author.username}}</h4>
+    <h4 class="topicline topic" style="color: black;">Sujet ajouté le {{activeTopic.date | date:"dd/MM/yy"}} par {{activeTopic.author.username}}</h4>
     <button class="btn" (click)="refresh()" mat-raised-button color="primary">Actualiser</button>
     </div>
 

@@ -4,7 +4,7 @@ import { Topic } from 'src/app/modeles/Topic';
 import { serviceTopic } from 'src/app/Services/serviceTopic';
 import { Subscription } from 'rxjs';
 import { Subject } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { serviceMessage } from 'src/app/Services/serviceMessage';
 import { User } from 'src/app/modeles/User';
 import { serviceUser } from 'src/app/Services/serviceUser';
@@ -23,21 +23,21 @@ export class TopicpageComponent implements OnInit {
   connectedUser!: User;
 
 
-  constructor(private formbuilder : FormBuilder, private servicestopic:serviceTopic, private route : ActivatedRoute,private servicesmessage:serviceMessage , private servicesuser:serviceUser) {
-    this.userSubscription = this.servicesuser.userSubject.subscribe((connectedUser:User) => {this.connectedUser=connectedUser;
-    })
-    this.servicesuser.emitConnectedUser();
-    this.topicSubscription = this.servicestopic.topicSubject.subscribe((activeTopic:Topic) => {this.activeTopic=activeTopic;
-    })
-    this.servicestopic.emitActiveTopic();
-   }
+  constructor(private formbuilder : FormBuilder, private servicestopic:serviceTopic, private router :Router,private servicesmessage:serviceMessage , private servicesuser:serviceUser) {
+    
   
-  
+  }
   ngOnInit(): void {
     // creer une propriété topic 
     // souscrire au topic subject et dans le subscribe  assigner le retour du subscribe a la propriété topic
     // faire un appel de emitactivetopic
     
+   this.userSubscription = this.servicesuser.userSubject.subscribe((connectedUser:User) => {this.connectedUser=connectedUser;
+    })
+    this.servicesuser.emitConnectedUser();
+    this.topicSubscription = this.servicestopic.topicSubject.subscribe((activeTopic:Topic) => {this.activeTopic=activeTopic;
+    })
+    this.servicestopic.emitActiveTopic();
    
 
     console.log(this.activeTopic);
@@ -53,15 +53,16 @@ export class TopicpageComponent implements OnInit {
   }
 
 onSubmit(): void{
-  this.servicesmessage.createMessage(this.myform.value.content,25062021)
+  this.servicesmessage.createMessage(this.myform.value.content,25062021);
+  
   
 
 }
 
 refresh(): void {
-  this.ngOnInit();
-  console.log("j'ai refresh");
-  //getAllmessages()
+  this.servicestopic.getTopic2(this.activeTopic.id);
+
+
 }
 
 }

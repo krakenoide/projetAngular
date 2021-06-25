@@ -57,7 +57,10 @@ export class serviceMessage {
     createMessage(Content:string,date:number){
         this.httpClient.post<Message> (this.apiMessage, {content: Content, user: this.connectedUser, date: date, topic: this.activeTopic})
                        .subscribe(data =>{this.activeMessage=data;  
-                        
+                        this.snackBar.open("Message envoyé","Ok",{duration:2000});
+                        this.servicesTopic.getTopic2(this.activeTopic.id);
+
+
                     },
                        error => {
                         this.snackBar.open("Echec de la création du message!","Ok",{duration:4000});

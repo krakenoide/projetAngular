@@ -1,5 +1,6 @@
 import { Component, OnInit} from '@angular/core';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder} from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { serviceUser } from 'src/app/Services/serviceUser';
 
 @Component({
@@ -10,7 +11,7 @@ import { serviceUser } from 'src/app/Services/serviceUser';
 export class CreationPageComponent implements OnInit {
     myForm!: FormGroup;
 
-    constructor(private formBuilder: FormBuilder,private servicesUser:serviceUser) { 
+    constructor(private formBuilder: FormBuilder,private servicesUser:serviceUser,private snackBar:MatSnackBar) { 
 
     }
 
@@ -23,12 +24,22 @@ export class CreationPageComponent implements OnInit {
 		});
 	}
 
+	isUsernameAlreadyInDb():void{
+		//TODO : Dynamicly do this using Obsvervables and Validators
+		//console.log(this.servicesUser.isUsernameAlreadyInDB(this.myForm.value.username));
+	}
+
 	onSubmit(): void {
-		console.log(this.myForm.controls.username);
-		if(this.myForm.value.password!==this.myForm.value.passwordConfirm) {
-			console.log("les mdp de correspondent pas !");
+		
+		if(this.servicesUser.isUsernameAlreadyInDB(this.myForm.value.username)){
+			this.snackBar.open("Cet utilisateur existe déjà !","Ok",{duration: 2000});
 		} else {
-			this.servicesUser.createUser(this.myForm.value.username,this.myForm.value.password,this.myForm.value.passwordConfirm,this.myForm.value.rememberme);
+
+			if(this.myForm.value.password!==this.myForm.value.passwordConfirm) {
+				this.snackBar.open("Les mots de passe ne correspondent pas !","Ok",{duration: 2000});
+			} else {
+				this.servicesUser.createUser(this.myForm.value.username,this.myForm.value.password,this.myForm.value.passwordConfirm,this.myForm.value.rememberme);
+			}
 		}
 	}
 
@@ -56,3 +67,4 @@ export class CreationPageComponent implements OnInit {
 		}
   	}
 }
+

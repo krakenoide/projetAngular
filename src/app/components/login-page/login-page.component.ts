@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder,Validators } from '@angular/forms';
 import { serviceUser } from '../../Services/serviceUser';
 
@@ -7,7 +7,7 @@ import { serviceUser } from '../../Services/serviceUser';
 	templateUrl: './login-page.component.html'
 })
 
-export class LoginPageComponent implements OnInit{
+export class LoginPageComponent implements OnInit {
 	loginForm!: FormGroup;
 
 	constructor(private formBuilder: FormBuilder,private servicesUser:serviceUser) { 
@@ -25,8 +25,6 @@ export class LoginPageComponent implements OnInit{
 	onSubmit(): void {
 		this.servicesUser.login(this.loginForm.value.username,this.loginForm.value.password,
 			this.loginForm.value.rememberme);
-		console.log(this.loginForm.value.username);
-		console.log(this.loginForm.value.password);
 	}
 
 	getUsernameErrors(): string|void{
@@ -38,6 +36,9 @@ export class LoginPageComponent implements OnInit{
 		}
 		if (this.loginForm.controls.username.hasError('maxLength')){
 			return "Le nom d'utilisateur doit comporter au maximum 50 caractères";
+		}
+		if (this.loginForm.controls.username.hasError('notInDB')){
+			return "Le nom d'utilisateur est déjà utilisé par un autre utilisateur";
 		}
 	}
 	
@@ -54,7 +55,4 @@ export class LoginPageComponent implements OnInit{
 	}
 
 }
-
-
-  
 

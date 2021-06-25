@@ -15,7 +15,6 @@ export class serviceUser {
 	urlLogin = "http://localhost:8080/login"
 	userSubject = new Subject<User>();
 
-<<<<<<< HEAD
     constructor(private httpClient:HttpClient,private router:Router,private snackBar:MatSnackBar){
         if(this.connectedUser==null){
             this.connectedUser = new User(0,"",0);
@@ -27,19 +26,6 @@ export class serviceUser {
         this.connectedUser=cuser;
         this.emitConnectedUser();
     }
-=======
-	constructor(private httpClient:HttpClient,private router:Router,private snackBar:MatSnackBar){
-		if(this.connectedUser==null){
-			this.connectedUser = new User(0,"","",0);
-		}
-		this.emitConnectedUser();
-	}
-	
-	setConnectedUser(cuser:User):void {
-		this.connectedUser=cuser;
-		this.emitConnectedUser();
-	}
->>>>>>> f4347b8429c4e5e61c8c7a49389becc6446629aa
 
 	emitConnectedUser():void{
 		this.userSubject.next(this.connectedUser);

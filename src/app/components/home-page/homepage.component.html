@@ -28,7 +28,7 @@
 
   <div class="topicline" *ngFor="let topic of filteredTopics  | async;let index=index">
   <a class="topic" (mouseleave) ="mouseLeavelist(index)" *ngIf="booleanlistisover[index]&&!booleanlistisclicked[index]" (click)="goToTopic(topic.id)">{{topic.title}} 
-    <span class="details">{{topic.author.username}} {{topic.date | date:"MM/dd/yy"}}</span></a>
+    <span class="details">{{topic.author.username}} {{topic.date | date:"dd/MM/yy"}}</span></a>
   <a class="topic" (mouseenter) ="mouseEnterlist(index)" *ngIf="!booleanlistisover[index]&&!booleanlistisclicked[index]">{{topic.title}} </a>
 
   <span *ngIf="booleanlistisclicked[index]">

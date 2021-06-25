@@ -8,7 +8,6 @@ import { serviceUser } from '../../Services/serviceUser';
 import { serviceTopic } from '../../Services/serviceTopic';
 import { Router } from "@angular/router";
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Message } from 'src/app/modeles/Message';
 
 @Component({
   selector: 'app-home-page',
@@ -127,8 +126,6 @@ export class HomePageComponent implements OnInit {
 
   goToTopic(id:number) {
     this.servicesTopic.getTopic2(id);
-    
-      
   }
 
   delete (topic:Topic) {

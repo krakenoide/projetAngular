@@ -5,29 +5,12 @@ import { Topic } from "src/app/modeles/Topic";
 import { Router } from "@angular/router";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { User } from "../modeles/User";
-import { Message } from "../modeles/Message";
 import { Subscription } from 'rxjs';
 import { serviceUser } from '../Services/serviceUser';
 
 
 @Injectable()
 export class serviceTopic {
-<<<<<<< HEAD
-    connectedUser!:User;
-    userSubscription!:Subscription;
-    activeTopic!: Topic;
-    topicServiceList!: Topic[];
-    apiTopic = "http://localhost:8080/api/topic"
-    topicSubject = new Subject<Topic>();
-    topicAllSubject = new Subject<Topic[]>();
-
-    constructor(private httpClient:HttpClient,private router:Router, private snackBar:MatSnackBar,private servicesUser:serviceUser){
-        this.userSubscription = this.servicesUser.userSubject.subscribe((connectedUser:User) => {this.connectedUser=connectedUser;
-        })
-        this.servicesUser.emitConnectedUser();
-        this.getAllTopic();
-    }
-=======
 	connectedUser!:User;
 	activeTopic!: Topic;
 	topicServiceList!: Topic[];
@@ -35,12 +18,15 @@ export class serviceTopic {
 	topicSubject = new Subject<Topic>();
 	topicAllSubject = new Subject<Topic[]>();
 	topicSubscription!: Subscription;
+	userSubscription: Subscription;
 
 	constructor(private httpClient:HttpClient,private router:Router, private snackBar:MatSnackBar,private servicesUser:serviceUser){
+		this.userSubscription = this.servicesUser.userSubject.subscribe((connectedUser:User) => {
+            this.connectedUser=connectedUser;
+        })
+        this.servicesUser.emitConnectedUser();
 		this.getAllTopic();
-		
 	}
->>>>>>> f4347b8429c4e5e61c8c7a49389becc6446629aa
 
 	emitActiveTopic():void{
 		this.topicSubject.next(this.activeTopic);
@@ -73,38 +59,6 @@ export class serviceTopic {
 					});
 	}
 
-	// getTopic(id:number):Observable<Topic>{
-    //     return new Observable<Topic>(observer => {
-    //         this.httpClient.get<Topic> (this.apiTopic+`/${id}`, {observe: "body"})
-    //             .subscribe(topicfromapi =>{ {
-    //                 this.activeTopic = topicfromapi;
-	// 				console.log(this.activeTopic);
-    //                 this.emitActiveTopic();
-                   
-    //                 observer.next(topicfromapi);
-    //             }
-    //          },
-    //             error => {
-    //              this.snackBar.open("Echec de la récupération du sujet!","Ok",{duration: 4000});
-    //             });
-            
-    //     });
-      
-    // }
-
-<<<<<<< HEAD
-    createTopic(title:string,date:number,content:string){
-        this.httpClient.post<Topic> (this.apiTopic, {title:title,user:this.connectedUser,date:date,content:content})
-                       .subscribe(data =>{this.activeTopic=data;  
-                        this.snackBar.open("Sujet créé!");
-                        this.getAllTopic();
-                        this.redirectToHomePage();  
-                    },
-                       error => {
-                            this.snackBar.open("Echec de la création du sujet!","Ok",{duration: 4000});
-                       });
-    }
-=======
 	getTopic2(id : number) {
 		this.httpClient.get<Topic> (this.apiTopic+`/${id}`)
 			.subscribe(topicfromapi =>{ {
@@ -121,15 +75,11 @@ export class serviceTopic {
 		
 	};
   
->>>>>>> f4347b8429c4e5e61c8c7a49389becc6446629aa
-
-
-
-	createTopic(title:string,date:Date,content:Message){
+	createTopic(title:string,date:number,content:string){
 		this.httpClient.post<Topic> (this.apiTopic, {title:title,user:this.connectedUser,date:date,content:content})
 					.subscribe(data =>{this.activeTopic=data;  
 						this.snackBar.open("Sujet créé!");
-						this.redirectToHomePage();  
+						this.getAllTopic();
 					},
 					error => {
 						this.snackBar.open("Echec de la création du sujet!","Ok",{duration: 4000});

@@ -22,6 +22,7 @@ export class serviceTopic {
 
 	constructor(private httpClient:HttpClient,private router:Router, private snackBar:MatSnackBar,private servicesUser:serviceUser){
 		this.getAllTopic();
+		
 	}
 
 	emitActiveTopic():void{
@@ -55,23 +56,43 @@ export class serviceTopic {
 					});
 	}
 
-	getTopic(id:number):Observable<Topic>{
-        return new Observable<Topic>(observer => {
-            this.httpClient.get<Topic> (this.apiTopic+`/${id}`, {observe: "body"})
-                .subscribe(topicfromapi =>{ {
-                    this.activeTopic = topicfromapi;
-                    this.emitActiveTopic();
+	// getTopic(id:number):Observable<Topic>{
+    //     return new Observable<Topic>(observer => {
+    //         this.httpClient.get<Topic> (this.apiTopic+`/${id}`, {observe: "body"})
+    //             .subscribe(topicfromapi =>{ {
+    //                 this.activeTopic = topicfromapi;
+	// 				console.log(this.activeTopic);
+    //                 this.emitActiveTopic();
                    
-                    observer.next(topicfromapi);
-                }
-             },
-                error => {
-                 this.snackBar.open("Echec de la récupération du sujet!","Ok",{duration: 4000});
-                });
+    //                 observer.next(topicfromapi);
+    //             }
+    //          },
+    //             error => {
+    //              this.snackBar.open("Echec de la récupération du sujet!","Ok",{duration: 4000});
+    //             });
             
-        });
+    //     });
       
-    }
+    // }
+
+	getTopic2(id : number) {
+		this.httpClient.get<Topic> (this.apiTopic+`/${id}`)
+			.subscribe(topicfromapi =>{ {
+				this.activeTopic = topicfromapi;
+				console.log(this.activeTopic);
+				this.emitActiveTopic();
+			    this.router.navigate([`topic/${id}`]);
+				
+			}
+		 },
+			error => {
+			 this.snackBar.open("Echec de la récupération du sujet!","Ok",{duration: 4000});
+			});
+		
+	};
+  
+
+
 
 	createTopic(title:string,date:Date,content:Message){
 		this.httpClient.post<Topic> (this.apiTopic, {title:title,user:this.connectedUser,date:date,content:content})

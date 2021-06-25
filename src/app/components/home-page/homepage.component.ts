@@ -21,15 +21,21 @@ export class HomePageComponent implements OnInit {
   topicList: Topic[]=[];
   filteredTopics!: Observable<Topic[]>;
   booleanlist:boolean[]=[];
-  topicSubscription!: Subscription;
+  topicsSubscription!: Subscription;
   userSubscription!: Subscription;
-  activeTopic!: Observable<Topic>;
+  activeTopic!: Topic;
+  topicSubscription !: Subscription;
+
 
   constructor(private formBuilder: FormBuilder,private servicesUser:serviceUser,private servicesTopic:serviceTopic,private router:Router,private snackBar:MatSnackBar) { 
     this.userSubscription = this.servicesUser.userSubject.subscribe((connectedUser:User) => {this.connectedUser=connectedUser;
     })
     this.servicesUser.emitConnectedUser();
-    this.topicSubscription = this.servicesTopic.topicAllSubject.subscribe((topicServiceList:Topic[]) => {
+    this.topicSubscription = this.servicesTopic.topicSubject.subscribe((currenTopic:Topic) => {this.activeTopic=currenTopic;
+    })
+    this.servicesTopic.emitActiveTopic();
+    
+    this.topicsSubscription = this.servicesTopic.topicAllSubject.subscribe((topicServiceList:Topic[]) => {
       this.topicList=<Topic[]>topicServiceList;
       if (topicServiceList===undefined){
         this.topicList=[];
@@ -111,7 +117,9 @@ export class HomePageComponent implements OnInit {
   }
 
   goToTopic(id:number) {
-      this.router.navigate([`topic/${id}`]);
+    this.servicesTopic.getTopic2(id);
+    
+      
   }
 
   delete (topic:Topic) {

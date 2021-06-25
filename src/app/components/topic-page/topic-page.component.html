@@ -1,6 +1,5 @@
 <div *ngIf="activeTopic">
 
-
     <h1 class="topicline topic">{{activeTopic.title}}
 
     </h1>
@@ -8,24 +7,25 @@
 
     <button (click)="refresh()" id="actualisation">actualiser</button>
 
-
     <div class="inputlarge" *ngFor="let message of activeTopic.messages">
         {{message.author.username}}
 
         <div>
             {{message.content}}
+<<<<<<< HEAD
 
+=======
+>>>>>>> 41837ed9d3d9eff260c7a67ca31de7ff9b0754c3
         </div>
     </div>
 
 
     <form (ngSubmit)="onSubmit()" [formGroup]="myform">
-        <input type="text">
+        <input type="text"  formControlName="content" class="example-full-width inputsmall">
 
 
 
-        <input type="submit" name="content" formControlName="content">
-
+        <input type="submit"  class="button" value = "répondre">
 
     </form>
 </div>

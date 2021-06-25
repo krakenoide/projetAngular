@@ -7,6 +7,7 @@ import { Topic } from 'src/app/modeles/Topic';
 import { serviceUser } from '../../Services/serviceUser';
 import { serviceTopic } from '../../Services/serviceTopic';
 import { Router } from "@angular/router";
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-home-page',
@@ -21,8 +22,13 @@ export class HomePageComponent implements OnInit {
   filteredTopics!: Observable<Topic[]>;
   booleanlist:boolean[]=[];
   topicSubscription!: Subscription;
+  userSubscription!: Subscription;
+  activeTopic!: Observable<Topic>;
 
-  constructor(private formBuilder: FormBuilder,private servicesUser:serviceUser,private servicesTopic:serviceTopic,private router:Router) { 
+  constructor(private formBuilder: FormBuilder,private servicesUser:serviceUser,private servicesTopic:serviceTopic,private router:Router,private snackBar:MatSnackBar) { 
+    this.userSubscription = this.servicesUser.userSubject.subscribe((connectedUser:User) => {this.connectedUser=connectedUser;
+    })
+    this.servicesUser.emitConnectedUser();
     this.topicSubscription = this.servicesTopic.topicAllSubject.subscribe((topicServiceList:Topic[]) => {
       this.topicList=<Topic[]>topicServiceList;
       if (topicServiceList===undefined){
@@ -104,9 +110,22 @@ export class HomePageComponent implements OnInit {
       }
     }
   }
+
   goToTopic(id:number) {
-      this.servicesTopic.activeTopic=this.servicesTopic.getTopic(id);
-      this.router.navigate(['topic']);
+      this.router.navigate([`topic/${id}`]);
   }
 
+  delete (topic:Topic) {
+      if (this.connectedUser===topic.author || this.connectedUser.admin===1) {
+        this.servicesTopic.deleteTopic(topic.id);
+        this.servicesUser.redirectToHomePage();
+      } else { this.snackBar.open("Droits insuffisant pour supprimer ce sujet!","Ok",{duration:4000})}
+
+  }
+
+  modify (topic:Topic) {
+    if (this.connectedUser===topic.author || this.connectedUser.admin===1) {
+      this.servicesTopic.modifTopic("placeholder",topic.id);
+    } else { this.snackBar.open("Droits insuffisant pour modifier ce sujet!","Ok",{duration:4000})}
+  }
 }

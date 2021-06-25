@@ -18,6 +18,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { TopicpageComponent } from './components/topic-page/topic-page.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     HomePageComponent,
     HeaderComponent,
     LoginPageComponent,
+    PageModifComponent,
+    TopicpageComponent,
     PageModifComponent 
   ],
   imports: [

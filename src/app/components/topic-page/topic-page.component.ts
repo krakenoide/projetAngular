@@ -25,16 +25,6 @@ export class TopicpageComponent implements OnInit {
   constructor(private formbuilder : FormBuilder, private servicestopic:serviceTopic, private router :Router,private servicesmessage:serviceMessage , private servicesuser:serviceUser) {
     
   }
-<<<<<<< HEAD
-  ngOnInit(): void {
-	
-   	this.userSubscription = this.servicesuser.userSubject.subscribe((connectedUser:User) => {this.connectedUser=connectedUser;
-	})
-	this.servicesuser.emitConnectedUser();
-	this.topicSubscription = this.servicestopic.topicSubject.subscribe((activeTopic:Topic) => {this.activeTopic=activeTopic;
-	})
-	this.servicestopic.emitActiveTopic();
-=======
   
   ngOnInit(): void {   
    this.userSubscription = this.servicesuser.userSubject.subscribe((connectedUser:User) => {this.connectedUser=connectedUser;
@@ -43,7 +33,6 @@ export class TopicpageComponent implements OnInit {
     this.topicSubscription = this.servicestopic.topicSubject.subscribe((activeTopic:Topic) => {this.activeTopic=activeTopic;
     })
     this.servicestopic.emitActiveTopic();
->>>>>>> 911a803d3374de2f9de73e042dd83e5761552b7c
    
 
     console.log(this.activeTopic);

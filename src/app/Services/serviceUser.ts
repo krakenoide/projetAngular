@@ -116,6 +116,11 @@ export class serviceUser {
 	}
 
 	redirectToHomePage() : void {
-	this.router.navigate(['']);
+		this.router.navigate(['']);
 	}
+
+	isUsernameAlreadyInDB() : void {
+		
+	}
+
 }

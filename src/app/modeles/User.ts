@@ -8,10 +8,10 @@ export class User {
 	topics!: Topic[];
 	messages!: Message[];
 
-	constructor (id:number,username:string,password:string,admin:number) {
-		this.id=id;
-		this.username=username;
-		this.admin=admin;
-	}
+    constructor (id:number,username:string,admin:number) {
+        this.id=id;
+        this.username=username;
+        this.admin=admin;
+    }
 
 }

@@ -5,7 +5,6 @@ import { Topic } from "src/app/modeles/Topic";
 import { Router } from "@angular/router";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { User } from "../modeles/User";
-import { Message } from "../modeles/Message";
 import { Subscription } from 'rxjs';
 import { serviceUser } from '../Services/serviceUser';
 
@@ -19,10 +18,14 @@ export class serviceTopic {
 	topicSubject = new Subject<Topic>();
 	topicAllSubject = new Subject<Topic[]>();
 	topicSubscription!: Subscription;
+	userSubscription: Subscription;
 
 	constructor(private httpClient:HttpClient,private router:Router, private snackBar:MatSnackBar,private servicesUser:serviceUser){
+		this.userSubscription = this.servicesUser.userSubject.subscribe((connectedUser:User) => {
+            this.connectedUser=connectedUser;
+        })
+        this.servicesUser.emitConnectedUser();
 		this.getAllTopic();
-		
 	}
 
 	emitActiveTopic():void{
@@ -56,25 +59,6 @@ export class serviceTopic {
 					});
 	}
 
-	// getTopic(id:number):Observable<Topic>{
-    //     return new Observable<Topic>(observer => {
-    //         this.httpClient.get<Topic> (this.apiTopic+`/${id}`, {observe: "body"})
-    //             .subscribe(topicfromapi =>{ {
-    //                 this.activeTopic = topicfromapi;
-	// 				console.log(this.activeTopic);
-    //                 this.emitActiveTopic();
-                   
-    //                 observer.next(topicfromapi);
-    //             }
-    //          },
-    //             error => {
-    //              this.snackBar.open("Echec de la récupération du sujet!","Ok",{duration: 4000});
-    //             });
-            
-    //     });
-      
-    // }
-
 	getTopic2(id : number) {
 		this.httpClient.get<Topic> (this.apiTopic+`/${id}`)
 			.subscribe(topicfromapi =>{ {
@@ -91,14 +75,11 @@ export class serviceTopic {
 		
 	};
   
-
-
-
-	createTopic(title:string,date:Date,content:Message){
+	createTopic(title:string,date:number,content:string){
 		this.httpClient.post<Topic> (this.apiTopic, {title:title,user:this.connectedUser,date:date,content:content})
 					.subscribe(data =>{this.activeTopic=data;  
 						this.snackBar.open("Sujet créé!");
-						this.redirectToHomePage();  
+						this.getAllTopic();
 					},
 					error => {
 						this.snackBar.open("Echec de la création du sujet!","Ok",{duration: 4000});

@@ -25,7 +25,7 @@ export class CreationPageComponent implements OnInit {
 	}
 
 	isUsernameAlreadyInDb():void{
-		//TODO : Dynamicly do this using Obsvervables
+		//TODO : Dynamicly do this using Obsvervables and Validators
 		//console.log(this.servicesUser.isUsernameAlreadyInDB(this.myForm.value.username));
 	}
 

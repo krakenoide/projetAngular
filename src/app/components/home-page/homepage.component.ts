@@ -1,5 +1,5 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
-import { FormGroup, NgForm, Validators, FormBuilder, FormControl } from '@angular/forms';
+import { Component, OnInit} from '@angular/core';
+import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
 import {Observable,Subscription} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { User } from 'src/app/modeles/User';

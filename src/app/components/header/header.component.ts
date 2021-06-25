@@ -1,11 +1,9 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
-import { FormGroup, NgForm, Validators, FormBuilder } from '@angular/forms';
 import { User } from 'src/app/modeles/User';
 import { serviceUser } from '../../Services/serviceUser';
 import { serviceTopic } from '../../Services/serviceTopic';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
-import { Topic } from 'src/app/modeles/Topic';
 
 @Component({
  	selector: 'app-header',
@@ -41,9 +39,11 @@ export class HeaderComponent implements OnInit {
 	clickCreationCompte():void {
 		this.router.navigate(['creationpage']);
 	}
+	
 	clickLogin():void {
 		this.router.navigate(['login']);
 	}
+
 	clickLogout():void{
 		if (localStorage.getItem("storedUser")) {
 			localStorage.removeItem("storedUser");    

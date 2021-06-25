@@ -1,29 +1,15 @@
 import { Injectable } from "@angular/core";
-import { Subject } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { User } from "src/app/modeles/User";
-import { ActivatedRoute, Router } from "@angular/router";
+import {Router } from "@angular/router";
 import { Message} from "src/app/modeles/Message";
 import { Topic} from "src/app/modeles/Topic";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { Subscription } from 'rxjs';
-import { serviceUser } from '../Services/serviceUser';
+
 
 
 @Injectable()
 export class serviceMessage {
-<<<<<<< HEAD
-	user: string="";
-	userSubject = new Subject<string>();
-
-	getUser(cuser:string):void {
-		this.user=cuser;
-	}
-
-	emitUser():string{
-		return this.user;
-	}
-=======
     activeMessage!: Message;
     messages! : Message[];
     apiMessage = "http://localhost:8080/api/message"
@@ -39,7 +25,7 @@ export class serviceMessage {
         this.httpClient.get<Message[]> (this.apiMessage)
                        .subscribe(data =>{this.messages=data},
                         error => {
-                            this.snackBar.open("Echec de la recupération de tous les messages!",);
+                            this.snackBar.open("Echec de la recupération de tous les messages!","Ok",{duration:4000});
 
 
                         });
@@ -48,7 +34,7 @@ export class serviceMessage {
         this.httpClient.get<Message> (this.apiMessage+`/${id}`)
                        .subscribe(data =>{this.activeMessage=data},
                         error => {
-                            this.snackBar.open("Echec de la recupération d'un message!");
+                            this.snackBar.open("Echec de la recupération du message!","Ok",{duration:4000});
 
 
                         });
@@ -59,7 +45,7 @@ export class serviceMessage {
                         
                     },
                        error => {
-                        this.snackBar.open("Echec de la création!");
+                        this.snackBar.open("Echec de la création du message!","Ok",{duration:4000});
 
 
                        });
@@ -71,9 +57,9 @@ export class serviceMessage {
          this.httpClient.patch<Message> (this.apiMessage+`/${this.activeMessage.id}`, {content:ncontent})
              .subscribe(data =>{this.activeMessage=data; 
             
-                                    },
+            },
          error => {
-            this.snackBar.open("Echec de la modification!");
+            this.snackBar.open("Echec de la modification du message!","Ok",{duration:4000});
 
                                           
                  });
@@ -85,9 +71,8 @@ export class serviceMessage {
         this.httpClient.delete(this.apiMessage+`/${id}`)
                        .subscribe(data =>{},
                         error => {
-                            this.snackBar.open("Echec de la supression!");
+                            this.snackBar.open("Echec de la supression du message!","Ok",{duration:4000});
 
                         });
 }
->>>>>>> 53f8c02cbb7d7090cc2e62433afd7ba1d1cbbb9b
 }

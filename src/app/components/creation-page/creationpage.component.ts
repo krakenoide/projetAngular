@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder} from '@angular/forms';
 import { serviceUser } from 'src/app/Services/serviceUser';
 
 @Component({
@@ -23,8 +23,12 @@ export class CreationPageComponent implements OnInit {
 		});
 	}
 
+	isUsernameAlreadyInDb():void{
+		console.log(this.servicesUser.isUsernameAlreadyInDB(this.myForm.value.username));
+	}
+
 	onSubmit(): void {
-		console.log(this.myForm.controls.username);
+		
 		if(this.myForm.value.password!==this.myForm.value.passwordConfirm) {
 			console.log("les mdp de correspondent pas !");
 		} else {
@@ -56,3 +60,4 @@ export class CreationPageComponent implements OnInit {
 		}
   	}
 }
+

@@ -1,5 +1,5 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { FormGroup, FormBuilder,Validators, AbstractControl, ValidatorFn, ValidationErrors } from '@angular/forms';
+import { Component, OnChanges, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder,Validators } from '@angular/forms';
 import { serviceUser } from '../../Services/serviceUser';
 
 @Component({
@@ -16,7 +16,7 @@ export class LoginPageComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.loginForm = this.formBuilder.group({
-			username: ['',[Validators.required,Validators.minLength(3),Validators.maxLength(50),notInDB]],
+			username: ['',[Validators.required,Validators.minLength(3),Validators.maxLength(50)]],
 			password: ['',[Validators.required,Validators.minLength(3),Validators.maxLength(50)]],
 			rememberme: [false]
 		});
@@ -25,8 +25,6 @@ export class LoginPageComponent implements OnInit {
 	onSubmit(): void {
 		this.servicesUser.login(this.loginForm.value.username,this.loginForm.value.password,
 			this.loginForm.value.rememberme);
-		console.log(this.loginForm.value.username);
-		console.log(this.loginForm.value.password);
 	}
 
 	getUsernameErrors(): string|void{
@@ -58,10 +56,3 @@ export class LoginPageComponent implements OnInit {
 
 }
 
-export function notInDB(currentUsername: String,servicesUser:serviceUser): ValidatorFn{
-	console.log("Stop! Controle de Police !");
-	return (control:AbstractControl) : ValidationErrors | null => {
-		const inDB = servicesUser.isUsernameAlreadyInDB(control.value);
-		return inDB  ? {forbiddenName: {value: control.value}} : null;
-	};
-}

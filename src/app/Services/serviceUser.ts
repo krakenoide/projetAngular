@@ -59,7 +59,8 @@ export class serviceUser {
 
 	getAllUsers() {
 		this.httpClient.get<User[]> (this.apiUser)
-					.subscribe(data =>{this.users=data;
+					.subscribe(data =>{
+						this.users=data;
 					},
 					error => {
 						this.snackBar.open("Echec de la récupération des utilisateurs!","Ok",{duration: 4000});
@@ -86,6 +87,7 @@ export class serviceUser {
 							localStorage.removeItem("storedUser")
 						}  
 						this.snackBar.open("Utilisateur créé, vous êtes connectés!","Ok",{duration: 4000}); 
+						this.getAllUsers();
 						this.redirectToHomePage(); 
 					},
 					error => {
@@ -118,4 +120,16 @@ export class serviceUser {
 	redirectToHomePage() : void {
 	this.router.navigate(['']);
 	}
+
+	isUsernameAlreadyInDB(currentInput:String) : boolean {
+		console.log(this.users);
+		let isCurrentlyInDB:boolean = false;
+		this.users.forEach(element => {
+			if(element.username==currentInput){
+				isCurrentlyInDB = true;
+			}
+		});
+		return isCurrentlyInDB;
+	}
+
 }

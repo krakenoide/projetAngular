@@ -33,31 +33,22 @@ export class TopicpageComponent implements OnInit {
     this.topicSubscription = this.servicestopic.topicSubject.subscribe((activeTopic:Topic) => {this.activeTopic=activeTopic;
     })
     this.servicestopic.emitActiveTopic();
-   
-
-    console.log(this.activeTopic);
-
 
     this.myform=this.formbuilder.group({
       content:['',[Validators.required,Validators.maxLength(3000),Validators.minLength(5)]]
-    
-
     });
     this.myrefreshbutton=this.formbuilder.group({});
 
   }
 
 onSubmit(): void{
-  this.servicesmessage.createMessage(this.myform.value.content,25062021);
-  
-  
-
+  let dateTime:number = new Date().getTime();
+  this.servicesmessage.createMessage(this.myform.value.content,dateTime);
+  this.refresh();
 }
 
 refresh(): void {
   this.servicestopic.getTopic2(this.activeTopic.id);
-
-
 }
 
 }

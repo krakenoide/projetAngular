@@ -1,0 +1,27 @@
+    
+<form [formGroup]="formModif" (ngSubmit)="onSubmit()">
+    
+	<mat-form-field class="example-full-width inputsmall" appearance= "fill">
+		<mat-label>Modifier le nom d'utilisateur</mat-label>
+		<input matInput formControlName="nusername" placeholder={{user.username}}>
+	</mat-form-field>
+
+	<mat-form-field class="example-full-width inputsmall">
+		<mat-label>Entrer le mot de passe actuel</mat-label>
+		<input matInput formControlName="oldpassword" type="password">
+	</mat-form-field>
+
+	<mat-form-field class="example-full-width inputsmall">
+		<mat-label>Modifier le mot de passe</mat-label>
+		<input matInput formControlName="npassword" type="password">
+	</mat-form-field>
+
+	<mat-form-field class="example-full-width inputsmall">
+		<mat-label>Confirmer le nouveau mot de passe</mat-label>
+		<input matInput formControlName="npasswordbis" type="password">
+	</mat-form-field>
+
+	<br><br>
+	
+	<button type="submit" [disabled]="formModif.invalid" class="button" mat-raised-button color="primary">Valider la modification</button>
+</form>

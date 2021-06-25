@@ -17,14 +17,19 @@ export class TopicpageComponent implements OnInit {
   myform!: FormGroup;
   myrefreshbutton! : FormGroup;
   activeTopic !: Topic;
-  topicsubscription !: Subscription;
+  topicSubscription !: Subscription;
   activeid !: number;
   userSubscription!: Subscription;
   connectedUser!: User;
 
 
-  constructor(private formbuilder : FormBuilder, private servicest:serviceTopic, private route : ActivatedRoute,private servicesm:serviceMessage , private serviceu:serviceUser) {
-   
+  constructor(private formbuilder : FormBuilder, private servicestopic:serviceTopic, private route : ActivatedRoute,private servicesmessage:serviceMessage , private servicesuser:serviceUser) {
+    this.userSubscription = this.servicesuser.userSubject.subscribe((connectedUser:User) => {this.connectedUser=connectedUser;
+    })
+    this.servicesuser.emitConnectedUser();
+    this.topicSubscription = this.servicestopic.topicSubject.subscribe((activeTopic:Topic) => {this.activeTopic=activeTopic;
+    })
+    this.servicestopic.emitActiveTopic();
    }
   
   
@@ -33,15 +38,9 @@ export class TopicpageComponent implements OnInit {
     // souscrire au topic subject et dans le subscribe  assigner le retour du subscribe a la propriété topic
     // faire un appel de emitactivetopic
     
-    this.userSubscription = this.serviceu.userSubject.subscribe((connectedUser:User) => {this.connectedUser=connectedUser;
-    })
-    this.serviceu.emitConnectedUser();
-    const topic_id = this.route.snapshot.params['id'];
+   
 
-    this.servicest.getTopic(topic_id).subscribe((currentTopic :Topic) => {
-      this.activeTopic= currentTopic;
-      console.log(this.activeTopic)
-    });
+    console.log(this.activeTopic);
 
 
     this.myform=this.formbuilder.group({
@@ -54,9 +53,9 @@ export class TopicpageComponent implements OnInit {
   }
 
 onSubmit(): void{
-  this.servicesm.createMessage(this.myform.value,25062021)
+  this.servicesmessage.createMessage(this.myform.value.content,25062021)
   
-  console.log(this.myform.value);
+
 }
 
 refresh(): void {

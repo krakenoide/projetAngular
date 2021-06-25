@@ -119,8 +119,8 @@ export class HomePageComponent implements OnInit {
 
   goToTopic(id:number) {
     this.servicesTopic.getTopic2(id);
-    console.log(this.activeTopic)
-      this.router.navigate([`topic/${id}`]);
+    
+      
   }
 
   delete (topic:Topic) {

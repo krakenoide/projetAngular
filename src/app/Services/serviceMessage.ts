@@ -19,17 +19,19 @@ export class serviceMessage {
     connectedUser!: User;
     activeTopic !:Topic;
     userSubscription !:Subscription;
+    topicSubscription! : Subscription;
+    
 
-    constructor(private httpClient:HttpClient,private router:Router,private snackBar:MatSnackBar,private serviceu :serviceUser, private servicest : serviceTopic){
+    constructor(private httpClient:HttpClient,private router:Router,private snackBar:MatSnackBar,private servicesUser :serviceUser, private servicesTopic : serviceTopic){
 
 
-    this.userSubscription = this.serviceu.userSubject.subscribe((connectedUser:User) => {this.connectedUser=connectedUser;
+    this.userSubscription = this.servicesUser.userSubject.subscribe((connectedUser:User) => {this.connectedUser=connectedUser;
     })
-    this.serviceu.emitConnectedUser();
-    this.servicest.getTopic(this.activeTopic.id).subscribe((currentTopic :Topic) => {
-        this.activeTopic= currentTopic;
-      });
+    this.servicesUser.emitConnectedUser();
    
+    this.topicSubscription = this.servicesTopic.topicSubject.subscribe((activeTopic:Topic) => {this.activeTopic=activeTopic;
+    })
+    this.servicesTopic.emitActiveTopic();
 
     }
 
@@ -53,7 +55,7 @@ export class serviceMessage {
                         });
     }
     createMessage(Content:string,date:number){
-        this.httpClient.post<Message> (this.apiMessage, {content: Content, user: this.connectedUser, date: Date, topic: this.activeTopic})
+        this.httpClient.post<Message> (this.apiMessage, {content: Content, user: this.connectedUser, date: date, topic: this.activeTopic})
                        .subscribe(data =>{this.activeMessage=data;  
                         
                     },

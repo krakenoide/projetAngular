@@ -15,19 +15,17 @@ export class serviceUser {
 	urlLogin = "http://localhost:8080/login"
 	userSubject = new Subject<User>();
 
-	constructor(private httpClient:HttpClient,private router:Router,private snackBar:MatSnackBar){
-		if(this.connectedUser==null){
-			this.connectedUser = new User(0,"","",0);
-		}
-		this.users = [];
-		this.getAllUsers();
-		this.emitConnectedUser();
-	}
-	
-	setConnectedUser(cuser:User):void {
-		this.connectedUser=cuser;
-		this.emitConnectedUser();
-	}
+    constructor(private httpClient:HttpClient,private router:Router,private snackBar:MatSnackBar){
+        if(this.connectedUser==null){
+            this.connectedUser = new User(0,"",0);
+        }
+        this.emitConnectedUser();
+    }
+    
+    setConnectedUser(cuser:User):void {
+        this.connectedUser=cuser;
+        this.emitConnectedUser();
+    }
 
 	emitConnectedUser():void{
 		this.userSubject.next(this.connectedUser);
@@ -118,18 +116,6 @@ export class serviceUser {
 	}
 
 	redirectToHomePage() : void {
-		this.router.navigate(['']);
+	this.router.navigate(['']);
 	}
-
-	isUsernameAlreadyInDB(currentInput:String) : boolean {
-		console.log(this.users)
-		let isCurrentlyInDB:boolean = false;
-		this.users.forEach(element => {
-			if(element.username==currentInput){
-				isCurrentlyInDB = true;
-			}
-		});
-		return isCurrentlyInDB;
-	}
-
 }

@@ -16,10 +16,10 @@ export class CreationPageComponent implements OnInit {
 
     ngOnInit(): void {
         this.myForm = this.formBuilder.group({
-			username: ['',[Validators.required,Validators.minLength(3),Validators.maxLength(50)]],
-			password: ['',[Validators.required,Validators.minLength(3),Validators.maxLength(50)]],
-			passwordConfirm: ['',[Validators.required]],
-			rememberme: [false]
+        username: ['',[Validators.required,Validators.minLength(3),Validators.maxLength(50)]],
+        password: ['',[Validators.required,Validators.minLength(3),Validators.maxLength(50)]],
+        passwordConfirm: ['',[Validators.required]],
+    	rememberme: [false]
 		});
 	}
 

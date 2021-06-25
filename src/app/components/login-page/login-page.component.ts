@@ -14,7 +14,6 @@ export class LoginPageComponent implements OnInit {
 	
 	}
 
-
 	ngOnInit(): void {
 		this.loginForm = this.formBuilder.group({
 			username: ['',[Validators.required,Validators.minLength(3),Validators.maxLength(50),notInDB]],
@@ -22,8 +21,6 @@ export class LoginPageComponent implements OnInit {
 			rememberme: [false]
 		});
 	} 
-
-	
 
 	onSubmit(): void {
 		this.servicesUser.login(this.loginForm.value.username,this.loginForm.value.password,
